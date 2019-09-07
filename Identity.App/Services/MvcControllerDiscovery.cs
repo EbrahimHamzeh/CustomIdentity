@@ -89,7 +89,7 @@ namespace Identity.App.Services
                     {
                         id = item.Id,
                         text = item.DisplayName,
-                        state = new JsTreeNodeState { selected = selectedActionsId.Contains(item.Id) }
+                        state = new JsTreeNodeState { selected = selectedActionsId == null ? false : selectedActionsId.Contains(item.Id) }
                     };
                     actionNodesList.Add(actionNode);
                 }
@@ -99,7 +99,7 @@ namespace Identity.App.Services
                     id = parent.Id,
                     text = parent.DisplayName,
                     children = actionNodesList,
-                    state = new JsTreeNodeState { selected = selectedActionsId.Contains(parent.Id) }
+                    state = new JsTreeNodeState { selected = selectedActionsId == null ? false : selectedActionsId.Contains(parent.Id) }
                 };
                 nodesList.Add(rootNode);
             }
