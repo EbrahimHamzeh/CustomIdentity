@@ -1,0 +1,8 @@
+{
+    "search.exclude": {
+        "**/wwwroot": true
+    },
+    "files.watcherExclude": {
+        "**/wwwroot": true
+    }
+}

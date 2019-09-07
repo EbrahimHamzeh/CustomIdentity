@@ -1,0 +1,56 @@
+﻿@model LoginViewModel
+@{
+    ViewData["Title"] = "ورود";
+}
+
+<div class="kt-login__signin">
+    <div class="kt-login__head">
+        <h3 class="kt-login__title">ورودکاربر</h3>
+    </div>
+    <!-- @if (ViewData.ModelState.Any(keyValuePair => keyValuePair.Value.Errors.Any()))
+{
+    <div class="alert alert-danger">
+        <a href="#" class="close" data-dismiss="alert">×</a>
+        <h4>خطاهای اعتبارسنجی</h4>
+        <div asp-validation-summary="ModelOnly"></div>
+    </div>
+} -->
+    <form asp-controller="Login" asp-action="Index" method="post" autocomplete="off" class="kt-form">
+        <div class="input-group">
+            <input asp-for="Username" class="form-control" type="text" required placeholder="نام‌کاربری" autocomplete="off">
+            <span asp-validation-for="Username" class="text-danger"></span>
+        </div>
+        <div class="input-group">
+            <input asp-for="Password" class="form-control" type="password" required placeholder="رمزعبور"/>
+            <span asp-validation-for="Password"  dir="ltr" class="text-danger"></span>
+        </div>
+        <div class="input-group">
+            <dnt-captcha asp-captcha-generator-max="9000"
+                                 asp-captcha-generator-min="1"
+                                 asp-captcha-generator-language="Persian"
+                                 asp-font-name="Tahoma"
+                                 asp-font-size="20"
+                                 asp-refresh-button-class="fas fa-redo btn-sm"
+                                 asp-fore-color="#333333"
+                                 asp-back-color="#ccc"
+                                 asp-text-box-class="text-box form-control"
+                                 asp-text-box-template="<div class='input-group'><span class='input-group-prepend'><span class='input-group-text'><i class='fas fa-lock'></i></span></span>{0}</div>"
+                                 asp-validation-message-class="text-danger"
+                                 />
+        </div>
+        <div class="row kt-login__extra">
+            <div class="col">
+                <label class="kt-checkbox">
+                    <input type="checkbox" asp-for="RememberMe"> مرابه‌خاطربسپار
+                    <span></span>
+                </label>
+            </div>
+            <div class="col kt-align-right">
+                <a href="javascript:;" id="kt_login_forgot" class="kt-login__link">رمزعبوررا‌فراموش‌کرده‌اید؟</a>
+            </div>
+        </div>
+        <div class="kt-login__actions">
+            <button type="submit" class="btn btn-brand btn-pill kt-login__btn-primary">ورود</button>
+        </div>
+    </form>
+</div>
