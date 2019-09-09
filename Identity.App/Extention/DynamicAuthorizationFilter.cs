@@ -37,26 +37,14 @@ namespace Identity.App.Extention
             }
 
             var actionId = GetActionId(context);
-            var userName = context.HttpContext.User.Identity.Name;
 
-            // var roles = await (
-            //     from user in _dbContext.Users
-            //     join userRole in _dbContext.UserRoles on user.Id equals userRole.UserId
-            //     join role in _dbContext.Roles on userRole.RoleId equals role.Id
-            //     where user.UserName == userName
-            //     select role
-            // ).ToListAsync();
-
-            var user = _userManager.GetCurrentUserRoles();
+            //var user = _userManager.GetCurrentUserRoles();
             var roles = _userManager.GetCurrentUserAccessInAction();
-
-            // foreach (var role in roles)
-            // {
-            //     var accessList =
-            //         JsonConvert.DeserializeObject<IEnumerable<MvcControllerInfo>>(role.Access);
-            //     if (accessList.SelectMany(c => c.Actions).Any(a => a.Id == actionId))
-            //         return;
-            // }
+            if(!string.IsNullOrEmpty(roles)){
+                var roleArray = roles.Split(',');
+                if(roleArray.Contains(actionId))
+                    return;
+            }
 
             context.Result = new ForbidResult();
         }
@@ -94,7 +82,7 @@ namespace Identity.App.Extention
             var controller = controllerActionDescriptor.ControllerName;
             var action = controllerActionDescriptor.ActionName;
 
-            return $"{area}:{controller}:{action}";
+            return $"{area}:{controller}-Controller:{action}-Action";
         }
     }
 }
