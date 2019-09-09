@@ -14,7 +14,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace Identity.App.Areas.Admin.Controllers
 {
-    //[Authorize]
+    [Authorize]
     [DisplayName("سطح دسترسی")]
     [Area(AreaConstants.AdminArea)]
     public class DynmicRoleController : Controller

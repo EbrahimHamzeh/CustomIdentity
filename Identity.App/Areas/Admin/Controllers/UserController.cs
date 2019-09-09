@@ -12,6 +12,8 @@ using Identity.App.Extention;
 using System;
 using DNTCommon.Web.Core;
 using Microsoft.AspNetCore.Authorization;
+using Identity.App.Models.Context;
+using Microsoft.EntityFrameworkCore;
 
 namespace Identity.App.Areas.Admin.Controllers
 {
@@ -22,14 +24,22 @@ namespace Identity.App.Areas.Admin.Controllers
         private readonly IApplicationRoleManager _roleManager;
 
         private readonly IApplicationUserManager _userManager;
+        private readonly IUnitOfWork _uow;
+        private readonly DbSet<UserRole> _userRoles;
 
-        public UserController(IApplicationUserManager userManager, IApplicationRoleManager roleManager)
+        public UserController(IUnitOfWork uow, IApplicationUserManager userManager, IApplicationRoleManager roleManager)
         {
+            _uow = uow;
+            _uow.CheckArgumentIsNull(nameof(_uow));
+
             _userManager = userManager;
             _userManager.CheckArgumentIsNull(nameof(_userManager));
 
             _roleManager = roleManager;
             _roleManager.CheckArgumentIsNull(nameof(_roleManager));
+
+            _userRoles = _uow.Set<UserRole>();
+            _userRoles.CheckArgumentIsNull(nameof(_userRoles));
         }
 
         [DisplayName("لیست")]
@@ -71,7 +81,10 @@ namespace Identity.App.Areas.Admin.Controllers
                 {
                     user = await _userManager.FindByNameAsync(model.Username);
                     var role = await _roleManager.FindByGuidAsync(model.RoleGuid);
-                    
+
+                    await _userRoles.AddAsync(new UserRole { Role = role, User = user, RoleId = role.Id, UserId = user.Id });
+                    await _uow.SaveChangesAsync();
+
                     return RedirectToAction(nameof(Index));
                 }
                 else
