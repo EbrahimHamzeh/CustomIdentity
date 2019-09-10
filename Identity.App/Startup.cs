@@ -109,6 +109,8 @@ namespace Identity.App
             services.AddScoped<IPrincipal>(provider =>
                 provider.GetService<IHttpContextAccessor>()?.HttpContext?.User ?? ClaimsPrincipal.Current);
 
+            services.AddScoped<ILookupNormalizer, CustomNormalizer>();
+            
             services.AddScoped<IApplicationUserStore, ApplicationUserStore>();
             services.AddScoped<UserStore<User, Role, AppDbContext, int, UserClaim, UserRole, UserLogin, UserToken, RoleClaim>, ApplicationUserStore>();
 
