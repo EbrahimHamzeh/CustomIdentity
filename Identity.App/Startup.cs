@@ -22,6 +22,8 @@ using DNTCommon.Web.Core;
 using DNTCaptcha.Core;
 using Identity.App.Extention;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using System.Security.Principal;
+using System.Security.Claims;
 
 namespace Identity.App
 {
@@ -103,6 +105,9 @@ namespace Identity.App
             });
 
             services.AddScoped<IUnitOfWork, AppDbContext>();
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            services.AddScoped<IPrincipal>(provider =>
+                provider.GetService<IHttpContextAccessor>()?.HttpContext?.User ?? ClaimsPrincipal.Current);
 
             services.AddScoped<IApplicationUserStore, ApplicationUserStore>();
             services.AddScoped<UserStore<User, Role, AppDbContext, int, UserClaim, UserRole, UserLogin, UserToken, RoleClaim>, ApplicationUserStore>();
@@ -126,6 +131,9 @@ namespace Identity.App
 
             services.AddScoped<IUserValidator<User>, CustomUserValidator>();
             services.AddScoped<UserValidator<User>, CustomUserValidator>();
+
+            services.AddScoped<IUserClaimsPrincipalFactory<User>, ApplicationClaimsPrincipalFactory>();
+            services.AddScoped<UserClaimsPrincipalFactory<User, Role>, ApplicationClaimsPrincipalFactory>();
 
             services.AddSingleton<IMvcControllerDiscovery, MvcControllerDiscovery>();
 
