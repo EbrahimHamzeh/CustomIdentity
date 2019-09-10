@@ -13,6 +13,45 @@
     "TagHelpers": [
       {
         "Kind": "ITagHelper",
+        "Name": "Identity.App.Extention.ListGroupTagHelper",
+        "AssemblyName": "Identity.App",
+        "Documentation": null,
+        "TagOutputHint": null,
+        "CaseSensitive": false,
+        "TagMatchingRules": [
+          {
+            "TagName": "list-group",
+            "ParentTag": null,
+            "TagStructure": 0,
+            "Attributes": [],
+            "Diagnostics": []
+          }
+        ],
+        "BoundAttributes": [
+          {
+            "Kind": "ITagHelper",
+            "Name": "asp-items",
+            "TypeName": "System.Collections.Generic.List<System.String>",
+            "IsEnum": false,
+            "IndexerNamePrefix": null,
+            "IndexerTypeName": null,
+            "Documentation": null,
+            "Diagnostics": [],
+            "Metadata": {
+              "Common.PropertyName": "Items"
+            },
+            "BoundAttributeParameters": []
+          }
+        ],
+        "AllowedChildTags": [],
+        "Diagnostics": [],
+        "Metadata": {
+          "Runtime.Name": "ITagHelper",
+          "Common.TypeName": "Identity.App.Extention.ListGroupTagHelper"
+        }
+      },
+      {
+        "Kind": "ITagHelper",
         "Name": "DNTBreadCrumb.Core.BreadCrumbTagHelper",
         "AssemblyName": "DNTBreadCrumb.Core",
         "Documentation": null,
@@ -96,7 +135,7 @@
         "Kind": "ITagHelper",
         "Name": "DNTCaptcha.Core.DNTCaptchaTagHelper",
         "AssemblyName": "DNTCaptcha.Core",
-        "Documentation": "\n            <summary>\n            DNTCaptcha TagHelper\n            </summary>\n        ",
+        "Documentation": null,
         "TagOutputHint": null,
         "CaseSensitive": false,
         "TagMatchingRules": [
@@ -116,7 +155,7 @@
             "IsEnum": false,
             "IndexerNamePrefix": null,
             "IndexerTypeName": null,
-            "Documentation": "\n            <summary>\n            The back-color of the captcha. It's default value is string.Empty.\n            </summary>\n        ",
+            "Documentation": null,
             "Diagnostics": [],
             "Metadata": {
               "Common.PropertyName": "BackColor"
@@ -130,7 +169,7 @@
             "IsEnum": false,
             "IndexerNamePrefix": null,
             "IndexerTypeName": null,
-            "Documentation": "\n            <summary>\n            The font-name of the captcha. It's default value is Tahoma.\n            </summary>\n        ",
+            "Documentation": null,
             "Diagnostics": [],
             "Metadata": {
               "Common.PropertyName": "FontName"
@@ -144,7 +183,7 @@
             "IsEnum": false,
             "IndexerNamePrefix": null,
             "IndexerTypeName": null,
-            "Documentation": "\n            <summary>\n            The font-size of the captcha. It's default value is 12.\n            </summary>\n        ",
+            "Documentation": null,
             "Diagnostics": [],
             "Metadata": {
               "Common.PropertyName": "FontSize"
@@ -158,7 +197,7 @@
             "IsEnum": false,
             "IndexerNamePrefix": null,
             "IndexerTypeName": null,
-            "Documentation": "\n            <summary>\n            The fore-color of the captcha. It's default value is #1B0172.\n            </summary>\n        ",
+            "Documentation": null,
             "Diagnostics": [],
             "Metadata": {
               "Common.PropertyName": "ForeColor"
@@ -172,7 +211,7 @@
             "IsEnum": true,
             "IndexerNamePrefix": null,
             "IndexerTypeName": null,
-            "Documentation": "\n            <summary>\n            The language of the captcha. It's default value is Persian.\n            </summary>\n        ",
+            "Documentation": null,
             "Diagnostics": [],
             "Metadata": {
               "Common.PropertyName": "Language"
@@ -186,7 +225,7 @@
             "IsEnum": false,
             "IndexerNamePrefix": null,
             "IndexerTypeName": null,
-            "Documentation": "\n            <summary>\n            The max value of the captcha. It's default value is 9000.\n            </summary>\n        ",
+            "Documentation": null,
             "Diagnostics": [],
             "Metadata": {
               "Common.PropertyName": "Max"
@@ -200,7 +239,7 @@
             "IsEnum": false,
             "IndexerNamePrefix": null,
             "IndexerTypeName": null,
-            "Documentation": "\n            <summary>\n            The min value of the captcha. It's default value is 1.\n            </summary>\n        ",
+            "Documentation": null,
             "Diagnostics": [],
             "Metadata": {
               "Common.PropertyName": "Min"
@@ -214,7 +253,7 @@
             "IsEnum": false,
             "IndexerNamePrefix": null,
             "IndexerTypeName": null,
-            "Documentation": "\n            <summary>\n            The placeholder value of the captcha. It's default value is `کد امنیتی به رقم`.\n            </summary>\n        ",
+            "Documentation": null,
             "Diagnostics": [],
             "Metadata": {
               "Common.PropertyName": "Placeholder"
@@ -228,7 +267,7 @@
             "IsEnum": false,
             "IndexerNamePrefix": null,
             "IndexerTypeName": null,
-            "Documentation": "\n            <summary>\n            The css class of the captcha. It's default value is `text-box single-line form-control col-md-4`.\n            </summary>\n        ",
+            "Documentation": null,
             "Diagnostics": [],
             "Metadata": {
               "Common.PropertyName": "TextBoxClass"
@@ -242,7 +281,7 @@
             "IsEnum": false,
             "IndexerNamePrefix": null,
             "IndexerTypeName": null,
-            "Documentation": "\n            <summary>\n            The text-box-template of the captcha. It's default value is `<div class=\"input-group col-md-4\"><span class=\"input-group-addon\"><span class=\"glyphicon glyphicon-lock\"></span></span>{0}</div>`.\n            </summary>\n        ",
+            "Documentation": null,
             "Diagnostics": [],
             "Metadata": {
               "Common.PropertyName": "TextBoxTemplate"
@@ -256,7 +295,7 @@
             "IsEnum": false,
             "IndexerNamePrefix": null,
             "IndexerTypeName": null,
-            "Documentation": "\n            <summary>\n            The validation-error-message of the captcha. It's default value is `لطفا کد امنیتی را به رقم وارد نمائید`.\n            </summary>\n        ",
+            "Documentation": null,
             "Diagnostics": [],
             "Metadata": {
               "Common.PropertyName": "ValidationErrorMessage"
@@ -270,7 +309,7 @@
             "IsEnum": false,
             "IndexerNamePrefix": null,
             "IndexerTypeName": null,
-            "Documentation": "\n            <summary>\n            The validation-message-class of the captcha. It's default value is `text-danger`.\n            </summary>\n        ",
+            "Documentation": null,
             "Diagnostics": [],
             "Metadata": {
               "Common.PropertyName": "ValidationMessageClass"
@@ -284,7 +323,7 @@
             "IsEnum": false,
             "IndexerNamePrefix": null,
             "IndexerTypeName": null,
-            "Documentation": "\n            <summary>\n            The refresh-button-class of the captcha. It's default value is `glyphicon glyphicon-refresh btn-sm`.\n            </summary>\n        ",
+            "Documentation": null,
             "Diagnostics": [],
             "Metadata": {
               "Common.PropertyName": "RefreshButtonClass"
@@ -492,7 +531,7 @@
             "IsEnum": false,
             "IndexerNamePrefix": null,
             "IndexerTypeName": null,
-            "Documentation": "\n            <summary>\n            The name of the action method.\n            </summary>\n            <remarks>\n            Must be <c>null</c> if <see cref=\"P:Microsoft.AspNetCore.Mvc.TagHelpers.AnchorTagHelper.Route\" /> or <see cref=\"P:Microsoft.AspNetCore.Mvc.TagHelpers.AnchorTagHelper.Page\" /> is non-<c>null</c>.\n            </remarks>\n        ",
+            "Documentation": null,
             "Diagnostics": [],
             "Metadata": {
               "Common.PropertyName": "Action"
@@ -506,7 +545,7 @@
             "IsEnum": false,
             "IndexerNamePrefix": null,
             "IndexerTypeName": null,
-            "Documentation": "\n            <summary>\n            The name of the controller.\n            </summary>\n            <remarks>\n            Must be <c>null</c> if <see cref=\"P:Microsoft.AspNetCore.Mvc.TagHelpers.AnchorTagHelper.Route\" /> or <see cref=\"P:Microsoft.AspNetCore.Mvc.TagHelpers.AnchorTagHelper.Page\" /> is non-<c>null</c>.\n            </remarks>\n        ",
+            "Documentation": null,
             "Diagnostics": [],
             "Metadata": {
               "Common.PropertyName": "Controller"
@@ -520,7 +559,7 @@
             "IsEnum": false,
             "IndexerNamePrefix": null,
             "IndexerTypeName": null,
-            "Documentation": "\n            <summary>\n            The name of the area.\n            </summary>\n            <remarks>\n            Must be <c>null</c> if <see cref=\"P:Microsoft.AspNetCore.Mvc.TagHelpers.AnchorTagHelper.Route\" /> is non-<c>null</c>.\n            </remarks>\n        ",
+            "Documentation": null,
             "Diagnostics": [],
             "Metadata": {
               "Common.PropertyName": "Area"
@@ -534,7 +573,7 @@
             "IsEnum": false,
             "IndexerNamePrefix": null,
             "IndexerTypeName": null,
-            "Documentation": "\n            <summary>\n            The name of the page.\n            </summary>\n            <remarks>\n            Must be <c>null</c> if <see cref=\"P:Microsoft.AspNetCore.Mvc.TagHelpers.AnchorTagHelper.Route\" /> or <see cref=\"P:Microsoft.AspNetCore.Mvc.TagHelpers.AnchorTagHelper.Action\" />, <see cref=\"P:Microsoft.AspNetCore.Mvc.TagHelpers.AnchorTagHelper.Controller\" />\n            is non-<c>null</c>.\n            </remarks>\n        ",
+            "Documentation": null,
             "Diagnostics": [],
             "Metadata": {
               "Common.PropertyName": "Page"
@@ -548,7 +587,7 @@
             "IsEnum": false,
             "IndexerNamePrefix": null,
             "IndexerTypeName": null,
-            "Documentation": "\n            <summary>\n            The name of the page handler.\n            </summary>\n            <remarks>\n            Must be <c>null</c> if <see cref=\"P:Microsoft.AspNetCore.Mvc.TagHelpers.AnchorTagHelper.Route\" /> or <see cref=\"P:Microsoft.AspNetCore.Mvc.TagHelpers.AnchorTagHelper.Action\" />, or <see cref=\"P:Microsoft.AspNetCore.Mvc.TagHelpers.AnchorTagHelper.Controller\" />\n            is non-<c>null</c>.\n            </remarks>\n        ",
+            "Documentation": null,
             "Diagnostics": [],
             "Metadata": {
               "Common.PropertyName": "PageHandler"
@@ -562,7 +601,7 @@
             "IsEnum": false,
             "IndexerNamePrefix": null,
             "IndexerTypeName": null,
-            "Documentation": "\n            <summary>\n            The protocol for the URL, such as \"http\" or \"https\".\n            </summary>\n        ",
+            "Documentation": null,
             "Diagnostics": [],
             "Metadata": {
               "Common.PropertyName": "Protocol"
@@ -576,7 +615,7 @@
             "IsEnum": false,
             "IndexerNamePrefix": null,
             "IndexerTypeName": null,
-            "Documentation": "\n            <summary>\n            The host name.\n            </summary>\n        ",
+            "Documentation": null,
             "Diagnostics": [],
             "Metadata": {
               "Common.PropertyName": "Host"
@@ -590,7 +629,7 @@
             "IsEnum": false,
             "IndexerNamePrefix": null,
             "IndexerTypeName": null,
-            "Documentation": "\n            <summary>\n            The URL fragment name.\n            </summary>\n        ",
+            "Documentation": null,
             "Diagnostics": [],
             "Metadata": {
               "Common.PropertyName": "Fragment"
@@ -604,7 +643,7 @@
             "IsEnum": false,
             "IndexerNamePrefix": null,
             "IndexerTypeName": null,
-            "Documentation": "\n            <summary>\n            Name of the route.\n            </summary>\n            <remarks>\n            Must be <c>null</c> if one of <see cref=\"P:Microsoft.AspNetCore.Mvc.TagHelpers.AnchorTagHelper.Action\" />, <see cref=\"P:Microsoft.AspNetCore.Mvc.TagHelpers.AnchorTagHelper.Controller\" />, <see cref=\"P:Microsoft.AspNetCore.Mvc.TagHelpers.AnchorTagHelper.Area\" /> \n            or <see cref=\"P:Microsoft.AspNetCore.Mvc.TagHelpers.AnchorTagHelper.Page\" /> is non-<c>null</c>.\n            </remarks>\n        ",
+            "Documentation": null,
             "Diagnostics": [],
             "Metadata": {
               "Common.PropertyName": "Route"
@@ -618,7 +657,7 @@
             "IsEnum": false,
             "IndexerNamePrefix": "asp-route-",
             "IndexerTypeName": "System.String",
-            "Documentation": "\n            <summary>\n            Additional parameters for the route.\n            </summary>\n        ",
+            "Documentation": null,
             "Diagnostics": [],
             "Metadata": {
               "Common.PropertyName": "RouteValues"
@@ -3157,7 +3196,7 @@
         "Kind": "ITagHelper",
         "Name": "Microsoft.AspNetCore.SpaServices.Prerendering.PrerenderTagHelper",
         "AssemblyName": "Microsoft.AspNetCore.SpaServices",
-        "Documentation": null,
+        "Documentation": "\n            <summary>\n            A tag helper for prerendering JavaScript applications on the server.\n            </summary>\n        ",
         "TagOutputHint": null,
         "CaseSensitive": false,
         "TagMatchingRules": [
@@ -3186,7 +3225,7 @@
             "IsEnum": false,
             "IndexerNamePrefix": null,
             "IndexerTypeName": null,
-            "Documentation": null,
+            "Documentation": "\n            <summary>\n            Specifies the path to the JavaScript module containing prerendering code.\n            </summary>\n        ",
             "Diagnostics": [],
             "Metadata": {
               "Common.PropertyName": "ModuleName"
@@ -3200,7 +3239,7 @@
             "IsEnum": false,
             "IndexerNamePrefix": null,
             "IndexerTypeName": null,
-            "Documentation": null,
+            "Documentation": "\n            <summary>\n            If set, specifies the name of the CommonJS export that is the prerendering function to execute.\n            If not set, the JavaScript module's default CommonJS export must itself be the prerendering function.\n            </summary>\n        ",
             "Diagnostics": [],
             "Metadata": {
               "Common.PropertyName": "ExportName"
@@ -3214,7 +3253,7 @@
             "IsEnum": false,
             "IndexerNamePrefix": null,
             "IndexerTypeName": null,
-            "Documentation": null,
+            "Documentation": "\n            <summary>\n            An optional JSON-serializable parameter to be supplied to the prerendering code.\n            </summary>\n        ",
             "Diagnostics": [],
             "Metadata": {
               "Common.PropertyName": "CustomDataParameter"
@@ -3228,7 +3267,7 @@
             "IsEnum": false,
             "IndexerNamePrefix": null,
             "IndexerTypeName": null,
-            "Documentation": null,
+            "Documentation": "\n            <summary>\n            The maximum duration to wait for prerendering to complete.\n            </summary>\n        ",
             "Diagnostics": [],
             "Metadata": {
               "Common.PropertyName": "TimeoutMillisecondsParameter"
