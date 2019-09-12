@@ -4,9 +4,8 @@ using Microsoft.AspNetCore.Identity;
 
 namespace Identity.App.Models
 {
-    public class UserLogin : IdentityUserLogin<int>, IAuditableEntity
+    public class UserLogin : IdentityUserLogin<Guid>, IAuditableEntity
     {
-        public Guid Guid { get; set; }
         public virtual User User { get; set; }
     }
 }

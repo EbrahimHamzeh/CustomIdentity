@@ -21,9 +21,8 @@ namespace Identity.App.Migrations
 
             modelBuilder.Entity("Identity.App.Models.Role", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd();
 
                     b.Property<string>("ActionArray");
 
@@ -43,8 +42,6 @@ namespace Identity.App.Migrations
                     b.Property<string>("Description");
 
                     b.Property<bool>("Enable");
-
-                    b.Property<Guid>("Guid");
 
                     b.Property<string>("ModifiedByBrowserName")
                         .HasMaxLength(1000);
@@ -94,8 +91,6 @@ namespace Identity.App.Migrations
 
                     b.Property<DateTimeOffset?>("CreatedDateTime");
 
-                    b.Property<Guid>("Guid");
-
                     b.Property<string>("ModifiedByBrowserName")
                         .HasMaxLength(1000);
 
@@ -106,9 +101,9 @@ namespace Identity.App.Migrations
 
                     b.Property<DateTimeOffset?>("ModifiedDateTime");
 
-                    b.Property<int>("RoleId");
+                    b.Property<Guid>("RoleId");
 
-                    b.Property<int?>("RoleId1");
+                    b.Property<Guid?>("RoleId1");
 
                     b.HasKey("Id");
 
@@ -121,9 +116,8 @@ namespace Identity.App.Migrations
 
             modelBuilder.Entity("Identity.App.Models.User", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd();
 
                     b.Property<int>("AccessFailedCount");
 
@@ -149,8 +143,6 @@ namespace Identity.App.Migrations
 
                     b.Property<string>("FirstName")
                         .HasMaxLength(450);
-
-                    b.Property<Guid>("Guid");
 
                     b.Property<bool>("IsActive");
 
@@ -232,8 +224,6 @@ namespace Identity.App.Migrations
 
                     b.Property<DateTimeOffset?>("CreatedDateTime");
 
-                    b.Property<Guid>("Guid");
-
                     b.Property<string>("ModifiedByBrowserName")
                         .HasMaxLength(1000);
 
@@ -244,9 +234,9 @@ namespace Identity.App.Migrations
 
                     b.Property<DateTimeOffset?>("ModifiedDateTime");
 
-                    b.Property<int>("UserId");
+                    b.Property<Guid>("UserId");
 
-                    b.Property<int?>("UserId1");
+                    b.Property<Guid?>("UserId1");
 
                     b.HasKey("Id");
 
@@ -273,8 +263,6 @@ namespace Identity.App.Migrations
 
                     b.Property<DateTimeOffset?>("CreatedDateTime");
 
-                    b.Property<Guid>("Guid");
-
                     b.Property<string>("ModifiedByBrowserName")
                         .HasMaxLength(1000);
 
@@ -287,9 +275,9 @@ namespace Identity.App.Migrations
 
                     b.Property<string>("ProviderDisplayName");
 
-                    b.Property<int>("UserId");
+                    b.Property<Guid>("UserId");
 
-                    b.Property<int?>("UserId1");
+                    b.Property<Guid?>("UserId1");
 
                     b.HasKey("LoginProvider", "ProviderKey");
 
@@ -302,9 +290,9 @@ namespace Identity.App.Migrations
 
             modelBuilder.Entity("Identity.App.Models.UserRole", b =>
                 {
-                    b.Property<int>("UserId");
+                    b.Property<Guid>("UserId");
 
-                    b.Property<int>("RoleId");
+                    b.Property<Guid>("RoleId");
 
                     b.Property<string>("CreatedByBrowserName")
                         .HasMaxLength(1000);
@@ -316,8 +304,6 @@ namespace Identity.App.Migrations
 
                     b.Property<DateTimeOffset?>("CreatedDateTime");
 
-                    b.Property<Guid>("Guid");
-
                     b.Property<string>("ModifiedByBrowserName")
                         .HasMaxLength(1000);
 
@@ -328,9 +314,9 @@ namespace Identity.App.Migrations
 
                     b.Property<DateTimeOffset?>("ModifiedDateTime");
 
-                    b.Property<int?>("RoleId1");
+                    b.Property<Guid?>("RoleId1");
 
-                    b.Property<int?>("UserId1");
+                    b.Property<Guid?>("UserId1");
 
                     b.HasKey("UserId", "RoleId");
 
@@ -345,7 +331,7 @@ namespace Identity.App.Migrations
 
             modelBuilder.Entity("Identity.App.Models.UserToken", b =>
                 {
-                    b.Property<int>("UserId");
+                    b.Property<Guid>("UserId");
 
                     b.Property<string>("LoginProvider");
 
@@ -361,8 +347,6 @@ namespace Identity.App.Migrations
 
                     b.Property<DateTimeOffset?>("CreatedDateTime");
 
-                    b.Property<Guid>("Guid");
-
                     b.Property<string>("ModifiedByBrowserName")
                         .HasMaxLength(1000);
 
@@ -373,7 +357,7 @@ namespace Identity.App.Migrations
 
                     b.Property<DateTimeOffset?>("ModifiedDateTime");
 
-                    b.Property<int?>("UserId1");
+                    b.Property<Guid?>("UserId1");
 
                     b.Property<string>("Value");
 
@@ -416,9 +400,11 @@ namespace Identity.App.Migrations
 
                     b.Property<int>("UserId");
 
+                    b.Property<Guid?>("UserId1");
+
                     b.HasKey("Id");
 
-                    b.HasIndex("UserId");
+                    b.HasIndex("UserId1");
 
                     b.ToTable("UserUsedPassword");
                 });
@@ -496,8 +482,7 @@ namespace Identity.App.Migrations
                 {
                     b.HasOne("Identity.App.Models.User", "User")
                         .WithMany("UserUsedPasswords")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("UserId1");
                 });
 #pragma warning restore 612, 618
         }

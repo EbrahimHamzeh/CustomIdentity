@@ -20,18 +20,26 @@ namespace Identity.App.Services
     public class ApplicationRoleManager : RoleManager<Role>, IApplicationRoleManager
     {
         private readonly IHttpContextAccessor _contextAccessor;
+        private readonly DbSet<RoleClaim> _roleClaims;
+        private readonly IUnitOfWork _uow;
+
         public ApplicationRoleManager(
             IApplicationRoleStore store,
             IEnumerable<IRoleValidator<Role>> roleValidators,
             ILookupNormalizer keyNormalizer,
             IdentityErrorDescriber errors,
             ILogger<ApplicationRoleManager> logger,
-            IHttpContextAccessor contextAccessor) :
-            base((RoleStore<Role, AppDbContext, int, UserRole, RoleClaim>)store, roleValidators, keyNormalizer, errors, logger)
+            IHttpContextAccessor contextAccessor,
+            IUnitOfWork uow) :
+            base((RoleStore<Role, AppDbContext, Guid, UserRole, RoleClaim>)store, roleValidators, keyNormalizer, errors, logger)
         {
-
             _contextAccessor = contextAccessor;
             _contextAccessor.CheckArgumentIsNull(nameof(_contextAccessor));
+
+            _uow = uow;
+            _uow.CheckArgumentIsNull(nameof(_uow));
+
+            _roleClaims = _uow.Set<RoleClaim>();
         }
 
         public async Task<PagedQueryResult<DynmicRoleListViewModel>> GetListAsync()
@@ -50,7 +58,7 @@ namespace Identity.App.Services
             var data = (await query.ToListAsync()).Select(x =>
                 new DynmicRoleListViewModel
                 {
-                    Guid = x.Guid,
+                    Guid = x.Id,
                     Title = x.Name,
                     Description = x.Description,
                     Enable = x.Enable
@@ -67,7 +75,7 @@ namespace Identity.App.Services
             var rol = await this.FindByGuidAsync(guid);
 
             return new DynmicRoleViewModel {
-                Guid = rol.Guid,
+                Guid = rol.Id,
                 Title = rol.Title,
                 NodeSelected = rol.ActionArray,
                 Description = rol.Description,
@@ -78,16 +86,28 @@ namespace Identity.App.Services
         public async Task<Role> FindByGuidAsync(Guid guid){
             if (guid == Guid.Empty)
                 return null;
-            return await Roles.FirstOrDefaultAsync(x=> x.Guid == guid);
+            return await Roles.FirstOrDefaultAsync(x=> x.Id == guid);
         }
 
         private int getCurrentUserId() => _contextAccessor.HttpContext.User.Identity.GetUserId<int>();
 
         public List<SelectListItem> GetRolesSelectList(){
             return Roles.Select(x=> new SelectListItem {
-                Value = x.Guid.ToString(),
+                Value = x.Id.ToString(),
                 Text = x.Name
             }).ToList();
+        }
+
+        public async Task AddRoleClaims(Guid roleId, string roleClaimType, string selectedRoleClaimValues)
+        {
+            var roleClaim = new RoleClaim {
+                RoleId = roleId,
+                ClaimType = roleClaimType,
+                ClaimValue = selectedRoleClaimValues
+            };
+
+            await _roleClaims.AddAsync(roleClaim);
+            await _uow.SaveChangesAsync();
         }
 
     }

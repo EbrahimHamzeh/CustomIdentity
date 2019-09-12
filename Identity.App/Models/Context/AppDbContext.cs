@@ -12,7 +12,7 @@ using Microsoft.Extensions.Logging;
 
 namespace Identity.App.Models.Context
 {
-    public class AppDbContext : IdentityDbContext<User, Role, int, UserClaim, UserRole, UserLogin, RoleClaim, UserToken>, IUnitOfWork
+    public class AppDbContext : IdentityDbContext<User, Role, Guid, UserClaim, UserRole, UserLogin, RoleClaim, UserToken>, IUnitOfWork
     {
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) { }
         public new void AddRange<TEntity>(IEnumerable<TEntity> entities) where TEntity : class

@@ -4,9 +4,8 @@ using Microsoft.AspNetCore.Identity;
 
 namespace Identity.App.Models
 {
-    public class RoleClaim : IdentityRoleClaim<int>, IAuditableEntity
+    public class RoleClaim : IdentityRoleClaim<Guid>, IAuditableEntity
     {
-        public Guid Guid { get; set; }
         public virtual Role Role { get; set; }
     }
 }

@@ -84,14 +84,14 @@ namespace Identity.App.Services.Interface
         /// <param name="roleId">The role's id.</param>
         /// <param name="cancellationToken">The <see cref="CancellationToken"/> used to propagate notifications that the operation should be canceled.</param>
         /// <returns>The user role if it exists.</returns>
-        Task<UserRole> FindUserRoleAsync(int userId, int roleId, CancellationToken cancellationToken);
+        Task<UserRole> FindUserRoleAsync(Guid userId, Guid roleId, CancellationToken cancellationToken);
         /// <summary>
         /// Return a user with the matching userId if it exists.
         /// </summary>
         /// <param name="userId">The user's id.</param>
         /// <param name="cancellationToken">The <see cref="CancellationToken"/> used to propagate notifications that the operation should be canceled.</param>
         /// <returns>The user if it exists.</returns>
-        Task<User> FindUserAsync(int userId, CancellationToken cancellationToken);
+        Task<User> FindUserAsync(Guid userId, CancellationToken cancellationToken);
 
         /// <summary>
         /// Return a user login with the matching userId, provider, providerKey if it exists.
@@ -101,7 +101,7 @@ namespace Identity.App.Services.Interface
         /// <param name="providerKey">The key provided by the <paramref name="loginProvider"/> to identify a user.</param>
         /// <param name="cancellationToken">The <see cref="CancellationToken"/> used to propagate notifications that the operation should be canceled.</param>
         /// <returns>The user login if it exists.</returns>
-        Task<UserLogin> FindUserLoginAsync(int userId, string loginProvider, string providerKey, CancellationToken cancellationToken);
+        Task<UserLogin> FindUserLoginAsync(Guid userId, string loginProvider, string providerKey, CancellationToken cancellationToken);
 
         /// <summary>
         /// Return a user login with  provider, providerKey if it exists.

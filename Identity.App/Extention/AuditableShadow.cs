@@ -109,7 +109,7 @@ namespace Identity.App.Extention
                 addedEntry.Property(CreatedByBrowserName).CurrentValue = userAgent;
                 addedEntry.Property(CreatedByIp).CurrentValue = userIp;
                 addedEntry.Property(CreatedByUserId).CurrentValue = userId;
-                addedEntry.Property("Guid").CurrentValue = System.Guid.NewGuid();  // TODO: maybe sometime error
+                addedEntry.Property("Id").CurrentValue = System.Guid.NewGuid();  // TODO: maybe sometime error
             }
         }
 

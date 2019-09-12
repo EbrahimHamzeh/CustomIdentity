@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Identity;
 
 namespace Identity.App.Models
 {
-    public class Role : IdentityRole<int>, IAuditableEntity
+    public class Role : IdentityRole<Guid>, IAuditableEntity
     {
         public Role() { }
 
@@ -19,7 +19,6 @@ namespace Identity.App.Models
             Description = description;
         }
 
-        public Guid Guid { get; set; }
         public string Title { get; set; }
 
         public string Description { get; set; }

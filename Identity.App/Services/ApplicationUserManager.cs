@@ -38,7 +38,7 @@ namespace Identity.App.Services
             ILogger<UserManager<User>> logger,
             IUnitOfWork uow,
             IHttpContextAccessor contextAccessor)
-                : base((UserStore<User, Role, AppDbContext, int, UserClaim, UserRole, UserLogin, UserToken, RoleClaim>)store,
+                : base((UserStore<User, Role, AppDbContext, Guid, UserClaim, UserRole, UserLogin, UserToken, RoleClaim>)store,
                 optionsAccessor,
                 passwordHasher,
                 userValidators,
@@ -111,7 +111,7 @@ namespace Identity.App.Services
                 return null;
             }
 
-            var userId = int.Parse(currentUserId);
+            var userId = Guid.Parse(currentUserId);
 
             return _currentUserRolesInScope = _users.Where(x => x.Id == userId).Include(x => x.Roles).ThenInclude(y => y.Role).ToList();
         }
@@ -136,7 +136,7 @@ namespace Identity.App.Services
             var data = (await query.ToListAsync()).Select(x =>
                 new UserListViewModel
                 {
-                    Guid = x.Guid,
+                    Guid = x.Id,
                     Username = x.UserName,
                     FirstName = x.FirstName,
                     LastName = x.LastName,

@@ -44,14 +44,14 @@ namespace Identity.App.Services.Interface
         /// </summary>
         /// <param name="id">The id to convert.</param>
         /// <returns>An instance of <typeparamref name="TKey"/> representing the provided <paramref name="id"/>.</returns>        
-        int ConvertIdFromString(string id);
+        Guid ConvertIdFromString(string id);
 
         /// <summary>
         /// Converts the provided <paramref name="id"/> to its string representation.
         /// </summary>
         /// <param name="id">The id to convert.</param>
         /// <returns>An <see cref="string"/> representation of the provided <paramref name="id"/>.</returns>
-        string ConvertIdToString(int id);
+        string ConvertIdToString(Guid id);
 
         /// <summary>
         /// Creates a new role in a store as an asynchronous operation.

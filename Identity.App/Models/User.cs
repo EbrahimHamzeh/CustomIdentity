@@ -7,14 +7,13 @@ using Identity.App.Extention;
 
 namespace Identity.App.Models
 {
-    public class User : IdentityUser<int>, IAuditableEntity
+    public class User : IdentityUser<Guid>, IAuditableEntity
     {
         public User()
         {
             UserUsedPasswords = new HashSet<UserUsedPassword>();
             UserTokens = new HashSet<UserToken>();
         }
-        public Guid Guid { get; set; }
 
         [StringLength(450)]
         public string FirstName { get; set; }

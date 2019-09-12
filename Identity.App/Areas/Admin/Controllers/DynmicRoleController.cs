@@ -62,13 +62,16 @@ namespace Identity.App.Areas.Admin.Controllers
                         Title = model.Title,
                         Enable = model.Enable,
                         Description = model.Description,
-                        ActionArray = model.NodeSelected
+                        ActionArray = model.NodeSelected,
                     };
 
                     var result = await _roleManager.CreateAsync(role);
 
                     if (result.Succeeded)
+                    {
+                        // _roleManager.AddRoleClaims(,)
                         return RedirectToAction(nameof(Index));
+                    }
                     else
                         ModelState.AddErrorsFromResult(result);
                 }

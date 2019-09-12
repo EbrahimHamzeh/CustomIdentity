@@ -14,7 +14,7 @@ using Microsoft.Extensions.Options;
 namespace Identity.App.Services
 {
     public class ApplicationUserStore :
-        UserStore<User, Role, AppDbContext, int, UserClaim, UserRole, UserLogin, UserToken, RoleClaim>,
+        UserStore<User, Role, AppDbContext, Guid, UserClaim, UserRole, UserLogin, UserToken, RoleClaim>,
         IApplicationUserStore
     {
         public ApplicationUserStore(IUnitOfWork uow, IdentityErrorDescriber describer = null) : base((AppDbContext)uow, describer)
@@ -74,12 +74,12 @@ namespace Identity.App.Services
             return base.FindTokenAsync(user, loginProvider, name, cancellationToken);
         }
 
-        Task<User> IApplicationUserStore.FindUserAsync(int userId, CancellationToken cancellationToken)
+        Task<User> IApplicationUserStore.FindUserAsync(Guid userId, CancellationToken cancellationToken)
         {
             return base.FindUserAsync(userId, cancellationToken);
         }
 
-        Task<UserLogin> IApplicationUserStore.FindUserLoginAsync(int userId, string loginProvider, string providerKey, CancellationToken cancellationToken)
+        Task<UserLogin> IApplicationUserStore.FindUserLoginAsync(Guid userId, string loginProvider, string providerKey, CancellationToken cancellationToken)
         {
             return base.FindUserLoginAsync(userId, loginProvider, providerKey, cancellationToken);
         }
@@ -89,7 +89,7 @@ namespace Identity.App.Services
             return base.FindUserLoginAsync(loginProvider, providerKey, cancellationToken);
         }
 
-        Task<UserRole> IApplicationUserStore.FindUserRoleAsync(int userId, int roleId, CancellationToken cancellationToken)
+        Task<UserRole> IApplicationUserStore.FindUserRoleAsync(Guid userId, Guid roleId, CancellationToken cancellationToken)
         {
             return base.FindUserRoleAsync(userId, roleId, cancellationToken);
         }

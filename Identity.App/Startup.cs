@@ -112,7 +112,7 @@ namespace Identity.App
             services.AddScoped<ILookupNormalizer, CustomNormalizer>();
             
             services.AddScoped<IApplicationUserStore, ApplicationUserStore>();
-            services.AddScoped<UserStore<User, Role, AppDbContext, int, UserClaim, UserRole, UserLogin, UserToken, RoleClaim>, ApplicationUserStore>();
+            services.AddScoped<UserStore<User, Role, AppDbContext, Guid, UserClaim, UserRole, UserLogin, UserToken, RoleClaim>, ApplicationUserStore>();
 
             services.AddScoped<IApplicationUserManager, ApplicationUserManager>();
             services.AddScoped<UserManager<User>, ApplicationUserManager>();
@@ -124,7 +124,7 @@ namespace Identity.App
             services.AddScoped<SignInManager<User>, ApplicationSignInManager>();
 
             services.AddScoped<IApplicationRoleStore, ApplicationRoleStore>();
-            services.AddScoped<RoleStore<Role, AppDbContext, int, UserRole, RoleClaim>, ApplicationRoleStore>();
+            services.AddScoped<RoleStore<Role, AppDbContext, Guid, UserRole, RoleClaim>, ApplicationRoleStore>();
 
             services.AddScoped<IIdentityDbInitializer, IdentityDbInitializer>();
 
