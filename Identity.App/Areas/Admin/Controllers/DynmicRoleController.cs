@@ -15,6 +15,7 @@ using Microsoft.AspNetCore.Authorization;
 namespace Identity.App.Areas.Admin.Controllers
 {
     //[Authorize]
+    [Authorize(Policy = GlobalEnum.DynamicRole)]
     [DisplayName("سطح دسترسی")]
     [Area(AreaConstants.AdminArea)]
     public class DynmicRoleController : Controller
@@ -71,7 +72,7 @@ namespace Identity.App.Areas.Admin.Controllers
 
                     if (result.Succeeded)
                     {
-                        await _roleManager.AddRoleClaims(guid, "DynamicRole", model.NodeSelected);
+                        await _roleManager.AddRoleClaims(guid, GlobalEnum.DynamicRole, model.NodeSelected);
                         return RedirectToAction(nameof(Index));
                     }
                     else

@@ -24,6 +24,8 @@ using Identity.App.Extention;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using System.Security.Principal;
 using System.Security.Claims;
+using Microsoft.AspNetCore.Authorization;
+using Identity.App.ViewModel;
 
 namespace Identity.App
 {
@@ -137,13 +139,28 @@ namespace Identity.App
             services.AddScoped<IUserClaimsPrincipalFactory<User>, ApplicationClaimsPrincipalFactory>();
             services.AddScoped<UserClaimsPrincipalFactory<User, Role>, ApplicationClaimsPrincipalFactory>();
 
+            services.AddScoped<ISecurityTrimmingService, SecurityTrimmingService>();
+
             services.AddSingleton<IMvcControllerDiscovery, MvcControllerDiscovery>();
+
+            services.AddScoped<IAuthorizationHandler, DynamicPermissionsAuthorizationHandler>();
+            services.AddAuthorization(opts =>
+            {
+                opts.AddPolicy(
+                    name: GlobalEnum.DynamicRole,
+                    configurePolicy: policy =>
+                    {
+                        policy.RequireAuthenticatedUser();
+                        policy.Requirements.Add(new DynamicPermissionRequirement());
+                    });
+            });
+
 
             services.AddDNTCommonWeb();
             services.AddDNTCaptcha(options => options.UseCookieStorageProvider());
 
             services.AddMvc(options => {
-                options.Filters.Add(typeof(DynamicAuthorizationFilter));
+                // options.Filters.Add(typeof(DynamicAuthorizationFilter));
             });
         }
 

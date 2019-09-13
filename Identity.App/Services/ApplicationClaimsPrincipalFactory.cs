@@ -7,6 +7,7 @@ using Identity.App.Services.Interface;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Options;
 using System.Linq;
+using Identity.App.ViewModel;
 
 namespace Identity.App.Services
 {
@@ -45,7 +46,7 @@ namespace Identity.App.Services
                 new Claim(ClaimTypes.NameIdentifier,user.Id.ToString(), ClaimValueTypes.Integer),
                 new Claim(ClaimTypes.GivenName, user.FirstName ?? string.Empty),
                 new Claim(ClaimTypes.Surname, user.LastName ?? string.Empty),
-                //new Claim("Roles", user) TODO: Add rols !!
+                //new Claim(GlobalEnum.DynamicRole, user.Roles.FirstOrDefault().Role.Claims.ToString(), ClaimValueTypes.String) TODO: کلا این اشتباهه
             });
         }
     }
