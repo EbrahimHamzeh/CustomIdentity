@@ -17,6 +17,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Identity.App.Areas.Admin.Controllers
 {
+    //[Authorize]
     [DisplayName("کاربران")]
     [Area(AreaConstants.AdminArea)]
     public class UserController : Controller

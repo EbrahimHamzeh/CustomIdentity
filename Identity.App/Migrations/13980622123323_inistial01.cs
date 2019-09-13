@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Identity.App.Migrations
 {
-    public partial class inisitals01 : Migration
+    public partial class inistial01 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -22,11 +22,11 @@ namespace Identity.App.Migrations
                     Enable = table.Column<bool>(nullable: false),
                     CreatedByBrowserName = table.Column<string>(maxLength: 1000, nullable: true),
                     CreatedByIp = table.Column<string>(maxLength: 255, nullable: true),
-                    CreatedByUserId = table.Column<int>(nullable: true),
+                    CreatedByUserId = table.Column<Guid>(nullable: true),
                     CreatedDateTime = table.Column<DateTimeOffset>(nullable: true),
                     ModifiedByBrowserName = table.Column<string>(maxLength: 1000, nullable: true),
                     ModifiedByIp = table.Column<string>(maxLength: 255, nullable: true),
-                    ModifiedByUserId = table.Column<int>(nullable: true),
+                    ModifiedByUserId = table.Column<Guid>(nullable: true),
                     ModifiedDateTime = table.Column<DateTimeOffset>(nullable: true)
                 },
                 constraints: table =>
@@ -64,10 +64,10 @@ namespace Identity.App.Migrations
                     IsActive = table.Column<bool>(nullable: false),
                     CreatedByBrowserName = table.Column<string>(maxLength: 1000, nullable: true),
                     CreatedByIp = table.Column<string>(maxLength: 255, nullable: true),
-                    CreatedByUserId = table.Column<int>(nullable: true),
+                    CreatedByUserId = table.Column<Guid>(nullable: true),
                     ModifiedByBrowserName = table.Column<string>(maxLength: 1000, nullable: true),
                     ModifiedByIp = table.Column<string>(maxLength: 255, nullable: true),
-                    ModifiedByUserId = table.Column<int>(nullable: true),
+                    ModifiedByUserId = table.Column<Guid>(nullable: true),
                     ModifiedDateTime = table.Column<DateTimeOffset>(nullable: true)
                 },
                 constraints: table =>
@@ -87,11 +87,11 @@ namespace Identity.App.Migrations
                     RoleId1 = table.Column<Guid>(nullable: true),
                     CreatedByBrowserName = table.Column<string>(maxLength: 1000, nullable: true),
                     CreatedByIp = table.Column<string>(maxLength: 255, nullable: true),
-                    CreatedByUserId = table.Column<int>(nullable: true),
+                    CreatedByUserId = table.Column<Guid>(nullable: true),
                     CreatedDateTime = table.Column<DateTimeOffset>(nullable: true),
                     ModifiedByBrowserName = table.Column<string>(maxLength: 1000, nullable: true),
                     ModifiedByIp = table.Column<string>(maxLength: 255, nullable: true),
-                    ModifiedByUserId = table.Column<int>(nullable: true),
+                    ModifiedByUserId = table.Column<Guid>(nullable: true),
                     ModifiedDateTime = table.Column<DateTimeOffset>(nullable: true)
                 },
                 constraints: table =>
@@ -123,11 +123,11 @@ namespace Identity.App.Migrations
                     UserId1 = table.Column<Guid>(nullable: true),
                     CreatedByBrowserName = table.Column<string>(maxLength: 1000, nullable: true),
                     CreatedByIp = table.Column<string>(maxLength: 255, nullable: true),
-                    CreatedByUserId = table.Column<int>(nullable: true),
+                    CreatedByUserId = table.Column<Guid>(nullable: true),
                     CreatedDateTime = table.Column<DateTimeOffset>(nullable: true),
                     ModifiedByBrowserName = table.Column<string>(maxLength: 1000, nullable: true),
                     ModifiedByIp = table.Column<string>(maxLength: 255, nullable: true),
-                    ModifiedByUserId = table.Column<int>(nullable: true),
+                    ModifiedByUserId = table.Column<Guid>(nullable: true),
                     ModifiedDateTime = table.Column<DateTimeOffset>(nullable: true)
                 },
                 constraints: table =>
@@ -158,11 +158,11 @@ namespace Identity.App.Migrations
                     UserId1 = table.Column<Guid>(nullable: true),
                     CreatedByBrowserName = table.Column<string>(maxLength: 1000, nullable: true),
                     CreatedByIp = table.Column<string>(maxLength: 255, nullable: true),
-                    CreatedByUserId = table.Column<int>(nullable: true),
+                    CreatedByUserId = table.Column<Guid>(nullable: true),
                     CreatedDateTime = table.Column<DateTimeOffset>(nullable: true),
                     ModifiedByBrowserName = table.Column<string>(maxLength: 1000, nullable: true),
                     ModifiedByIp = table.Column<string>(maxLength: 255, nullable: true),
-                    ModifiedByUserId = table.Column<int>(nullable: true),
+                    ModifiedByUserId = table.Column<Guid>(nullable: true),
                     ModifiedDateTime = table.Column<DateTimeOffset>(nullable: true)
                 },
                 constraints: table =>
@@ -192,11 +192,11 @@ namespace Identity.App.Migrations
                     RoleId1 = table.Column<Guid>(nullable: true),
                     CreatedByBrowserName = table.Column<string>(maxLength: 1000, nullable: true),
                     CreatedByIp = table.Column<string>(maxLength: 255, nullable: true),
-                    CreatedByUserId = table.Column<int>(nullable: true),
+                    CreatedByUserId = table.Column<Guid>(nullable: true),
                     CreatedDateTime = table.Column<DateTimeOffset>(nullable: true),
                     ModifiedByBrowserName = table.Column<string>(maxLength: 1000, nullable: true),
                     ModifiedByIp = table.Column<string>(maxLength: 255, nullable: true),
-                    ModifiedByUserId = table.Column<int>(nullable: true),
+                    ModifiedByUserId = table.Column<Guid>(nullable: true),
                     ModifiedDateTime = table.Column<DateTimeOffset>(nullable: true)
                 },
                 constraints: table =>
@@ -239,11 +239,11 @@ namespace Identity.App.Migrations
                     UserId1 = table.Column<Guid>(nullable: true),
                     CreatedByBrowserName = table.Column<string>(maxLength: 1000, nullable: true),
                     CreatedByIp = table.Column<string>(maxLength: 255, nullable: true),
-                    CreatedByUserId = table.Column<int>(nullable: true),
+                    CreatedByUserId = table.Column<Guid>(nullable: true),
                     CreatedDateTime = table.Column<DateTimeOffset>(nullable: true),
                     ModifiedByBrowserName = table.Column<string>(maxLength: 1000, nullable: true),
                     ModifiedByIp = table.Column<string>(maxLength: 255, nullable: true),
-                    ModifiedByUserId = table.Column<int>(nullable: true),
+                    ModifiedByUserId = table.Column<Guid>(nullable: true),
                     ModifiedDateTime = table.Column<DateTimeOffset>(nullable: true)
                 },
                 constraints: table =>
@@ -275,11 +275,11 @@ namespace Identity.App.Migrations
                     UserId1 = table.Column<Guid>(nullable: true),
                     CreatedByBrowserName = table.Column<string>(maxLength: 1000, nullable: true),
                     CreatedByIp = table.Column<string>(maxLength: 255, nullable: true),
-                    CreatedByUserId = table.Column<int>(nullable: true),
+                    CreatedByUserId = table.Column<Guid>(nullable: true),
                     CreatedDateTime = table.Column<DateTimeOffset>(nullable: true),
                     ModifiedByBrowserName = table.Column<string>(maxLength: 1000, nullable: true),
                     ModifiedByIp = table.Column<string>(maxLength: 255, nullable: true),
-                    ModifiedByUserId = table.Column<int>(nullable: true),
+                    ModifiedByUserId = table.Column<Guid>(nullable: true),
                     ModifiedDateTime = table.Column<DateTimeOffset>(nullable: true)
                 },
                 constraints: table =>

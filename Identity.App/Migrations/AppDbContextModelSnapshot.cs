@@ -35,7 +35,7 @@ namespace Identity.App.Migrations
                     b.Property<string>("CreatedByIp")
                         .HasMaxLength(255);
 
-                    b.Property<int?>("CreatedByUserId");
+                    b.Property<Guid?>("CreatedByUserId");
 
                     b.Property<DateTimeOffset?>("CreatedDateTime");
 
@@ -49,7 +49,7 @@ namespace Identity.App.Migrations
                     b.Property<string>("ModifiedByIp")
                         .HasMaxLength(255);
 
-                    b.Property<int?>("ModifiedByUserId");
+                    b.Property<Guid?>("ModifiedByUserId");
 
                     b.Property<DateTimeOffset?>("ModifiedDateTime");
 
@@ -87,7 +87,7 @@ namespace Identity.App.Migrations
                     b.Property<string>("CreatedByIp")
                         .HasMaxLength(255);
 
-                    b.Property<int?>("CreatedByUserId");
+                    b.Property<Guid?>("CreatedByUserId");
 
                     b.Property<DateTimeOffset?>("CreatedDateTime");
 
@@ -97,7 +97,7 @@ namespace Identity.App.Migrations
                     b.Property<string>("ModifiedByIp")
                         .HasMaxLength(255);
 
-                    b.Property<int?>("ModifiedByUserId");
+                    b.Property<Guid?>("ModifiedByUserId");
 
                     b.Property<DateTimeOffset?>("ModifiedDateTime");
 
@@ -132,7 +132,7 @@ namespace Identity.App.Migrations
                     b.Property<string>("CreatedByIp")
                         .HasMaxLength(255);
 
-                    b.Property<int?>("CreatedByUserId");
+                    b.Property<Guid?>("CreatedByUserId");
 
                     b.Property<DateTimeOffset?>("CreatedDateTime");
 
@@ -165,7 +165,7 @@ namespace Identity.App.Migrations
                     b.Property<string>("ModifiedByIp")
                         .HasMaxLength(255);
 
-                    b.Property<int?>("ModifiedByUserId");
+                    b.Property<Guid?>("ModifiedByUserId");
 
                     b.Property<DateTimeOffset?>("ModifiedDateTime");
 
@@ -220,7 +220,7 @@ namespace Identity.App.Migrations
                     b.Property<string>("CreatedByIp")
                         .HasMaxLength(255);
 
-                    b.Property<int?>("CreatedByUserId");
+                    b.Property<Guid?>("CreatedByUserId");
 
                     b.Property<DateTimeOffset?>("CreatedDateTime");
 
@@ -230,7 +230,7 @@ namespace Identity.App.Migrations
                     b.Property<string>("ModifiedByIp")
                         .HasMaxLength(255);
 
-                    b.Property<int?>("ModifiedByUserId");
+                    b.Property<Guid?>("ModifiedByUserId");
 
                     b.Property<DateTimeOffset?>("ModifiedDateTime");
 
@@ -259,7 +259,7 @@ namespace Identity.App.Migrations
                     b.Property<string>("CreatedByIp")
                         .HasMaxLength(255);
 
-                    b.Property<int?>("CreatedByUserId");
+                    b.Property<Guid?>("CreatedByUserId");
 
                     b.Property<DateTimeOffset?>("CreatedDateTime");
 
@@ -269,7 +269,7 @@ namespace Identity.App.Migrations
                     b.Property<string>("ModifiedByIp")
                         .HasMaxLength(255);
 
-                    b.Property<int?>("ModifiedByUserId");
+                    b.Property<Guid?>("ModifiedByUserId");
 
                     b.Property<DateTimeOffset?>("ModifiedDateTime");
 
@@ -300,7 +300,7 @@ namespace Identity.App.Migrations
                     b.Property<string>("CreatedByIp")
                         .HasMaxLength(255);
 
-                    b.Property<int?>("CreatedByUserId");
+                    b.Property<Guid?>("CreatedByUserId");
 
                     b.Property<DateTimeOffset?>("CreatedDateTime");
 
@@ -310,7 +310,7 @@ namespace Identity.App.Migrations
                     b.Property<string>("ModifiedByIp")
                         .HasMaxLength(255);
 
-                    b.Property<int?>("ModifiedByUserId");
+                    b.Property<Guid?>("ModifiedByUserId");
 
                     b.Property<DateTimeOffset?>("ModifiedDateTime");
 
@@ -343,7 +343,7 @@ namespace Identity.App.Migrations
                     b.Property<string>("CreatedByIp")
                         .HasMaxLength(255);
 
-                    b.Property<int?>("CreatedByUserId");
+                    b.Property<Guid?>("CreatedByUserId");
 
                     b.Property<DateTimeOffset?>("CreatedDateTime");
 
@@ -353,7 +353,7 @@ namespace Identity.App.Migrations
                     b.Property<string>("ModifiedByIp")
                         .HasMaxLength(255);
 
-                    b.Property<int?>("ModifiedByUserId");
+                    b.Property<Guid?>("ModifiedByUserId");
 
                     b.Property<DateTimeOffset?>("ModifiedDateTime");
 
@@ -380,7 +380,7 @@ namespace Identity.App.Migrations
                     b.Property<string>("CreatedByIp")
                         .HasMaxLength(255);
 
-                    b.Property<int?>("CreatedByUserId");
+                    b.Property<Guid?>("CreatedByUserId");
 
                     b.Property<DateTimeOffset?>("CreatedDateTime");
 
@@ -394,7 +394,7 @@ namespace Identity.App.Migrations
                     b.Property<string>("ModifiedByIp")
                         .HasMaxLength(255);
 
-                    b.Property<int?>("ModifiedByUserId");
+                    b.Property<Guid?>("ModifiedByUserId");
 
                     b.Property<DateTimeOffset?>("ModifiedDateTime");
 

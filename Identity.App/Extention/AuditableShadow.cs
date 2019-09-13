@@ -28,12 +28,12 @@ namespace Identity.App.Extention
                                         entity => EF.Property<string>(entity, ModifiedByIp);
         public static readonly string ModifiedByIp = nameof(ModifiedByIp);
 
-        public static readonly Func<object, int?> EFPropertyCreatedByUserId =
-                                        entity => EF.Property<int?>(entity, CreatedByUserId);
+        public static readonly Func<object, Guid?> EFPropertyCreatedByUserId =
+                                        entity => EF.Property<Guid?>(entity, CreatedByUserId);
         public static readonly string CreatedByUserId = nameof(CreatedByUserId);
 
-        public static readonly Func<object, int?> EFPropertyModifiedByUserId =
-                                        entity => EF.Property<int?>(entity, ModifiedByUserId);
+        public static readonly Func<object, Guid?> EFPropertyModifiedByUserId =
+                                        entity => EF.Property<Guid?>(entity, ModifiedByUserId);
         public static readonly string ModifiedByUserId = nameof(ModifiedByUserId);
 
         public static readonly Func<object, DateTimeOffset?> EFPropertyCreatedDateTime =
@@ -66,9 +66,9 @@ namespace Identity.App.Extention
                             .Property<string>(ModifiedByIp).HasMaxLength(255);
 
                 modelBuilder.Entity(entityType.ClrType)
-                            .Property<int?>(CreatedByUserId);
+                            .Property<Guid?>(CreatedByUserId);
                 modelBuilder.Entity(entityType.ClrType)
-                            .Property<int?>(ModifiedByUserId);
+                            .Property<Guid?>(ModifiedByUserId);
 
                 modelBuilder.Entity(entityType.ClrType)
                             .Property<DateTimeOffset?>(CreatedDateTime);
@@ -109,17 +109,17 @@ namespace Identity.App.Extention
                 addedEntry.Property(CreatedByBrowserName).CurrentValue = userAgent;
                 addedEntry.Property(CreatedByIp).CurrentValue = userIp;
                 addedEntry.Property(CreatedByUserId).CurrentValue = userId;
-                addedEntry.Property("Id").CurrentValue = System.Guid.NewGuid();  // TODO: maybe sometime error
+                //addedEntry.Property("Id").CurrentValue = System.Guid.NewGuid();  // TODO: maybe sometime error
             }
         }
 
-        private static int? getUserId(HttpContext httpContext)
+        private static Guid? getUserId(HttpContext httpContext)
         {
-            int? userId = null;
+            Guid? userId = null;
             var userIdValue = httpContext?.User?.Identity?.GetUserId();
             if (!string.IsNullOrWhiteSpace(userIdValue))
             {
-                userId = int.Parse(userIdValue);
+                userId = Guid.Parse(userIdValue);
             }
             return userId;
         }
