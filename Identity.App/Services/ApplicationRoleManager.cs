@@ -98,15 +98,26 @@ namespace Identity.App.Services
             }).ToList();
         }
 
-        public async Task AddRoleClaims(Guid roleId, string roleClaimType, string selectedRoleClaimValues)
+        public async Task AddOrUpdateRoleClaims(Guid roleId, string roleClaimType, string selectedRoleClaimValues)
         {
-            var roleClaim = new RoleClaim {
-                RoleId = roleId,
-                ClaimType = roleClaimType,
-                ClaimValue = selectedRoleClaimValues
-            };
+            var roleClaim = _roleClaims.Where(x => x.ClaimType == roleClaimType && x.RoleId == roleId).FirstOrDefault();
 
-            await _roleClaims.AddAsync(roleClaim);
+            if(roleClaim != null){
+                roleClaim.RoleId = roleId;
+                roleClaim.ClaimType = roleClaimType;
+                roleClaim.ClaimValue = selectedRoleClaimValues;
+
+                _roleClaims.Update(roleClaim);
+            } else {
+                roleClaim = new RoleClaim {
+                    RoleId = roleId,
+                    ClaimType = roleClaimType,
+                    ClaimValue = selectedRoleClaimValues
+                };
+                await _roleClaims.AddAsync(roleClaim);
+
+            }
+
             await _uow.SaveChangesAsync();
         }
 

@@ -72,7 +72,7 @@ namespace Identity.App.Areas.Admin.Controllers
 
                     if (result.Succeeded)
                     {
-                        await _roleManager.AddRoleClaims(guid, GlobalEnum.DynamicRole, model.NodeSelected);
+                        await _roleManager.AddOrUpdateRoleClaims(guid, GlobalEnum.DynamicRole, model.NodeSelected);
                         return RedirectToAction(nameof(Index));
                     }
                     else
@@ -104,7 +104,7 @@ namespace Identity.App.Areas.Admin.Controllers
 
             if (ModelState.IsValid)
             {
-                var role = await _roleManager.FindByGuidAsync(model.Guid);
+                var role = await _roleManager.FindByIdAsync(model.Guid.ToString());
                 if (role == null)
                 {
                     ModelState.AddModelError(string.Empty, "چنین سطح‌دسترسی در سیستم تعریف نشده است.");
@@ -118,11 +118,15 @@ namespace Identity.App.Areas.Admin.Controllers
                     var result = await _roleManager.UpdateAsync(role);
 
                     if (result.Succeeded)
+                    {
+                        await _roleManager.AddOrUpdateRoleClaims(model.Guid, GlobalEnum.DynamicRole, model.NodeSelected);
                         return RedirectToAction(nameof(Index));
+                    }
                     else
                         ModelState.AddErrorsFromResult(result);
                 }
             }
+            model.JsonJSTree = JsonConvert.SerializeObject(_mvcControllerDiscovery.GetAdminActionInTree(model.NodeSelected));
             return View(model);
         }
     }
