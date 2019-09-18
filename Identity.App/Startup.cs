@@ -99,7 +99,6 @@ namespace Identity.App
                 cookieAuthenticationOptions.LoginPath = siteSettings.CookieOptions.LoginPath;
                 cookieAuthenticationOptions.LogoutPath = siteSettings.CookieOptions.LogoutPath;
                 cookieAuthenticationOptions.AccessDeniedPath = siteSettings.CookieOptions.AccessDeniedPath;
-
                 // var provider = services.BuildServiceProvider();
                 // var ticketStore = provider.GetService<ITicketStore>();
                 // ticketStore.CheckArgumentIsNull(nameof(ticketStore));

@@ -93,6 +93,30 @@
 				align: 'center',
 				valign: 'middle',
           		formatter: enableFormatter
+				},{
+				title: 'وضعیت ایمیل',
+				field: 'isActive',
+				align: 'center',
+				valign: 'middle',
+          		formatter: enableFormatter
+				}, {
+				title: 'قفل بودن کاربر',
+				field: 'isActive',
+				align: 'center',
+				valign: 'middle',
+          		formatter: enableFormatter
+				}, {
+				title: 'تاریخ اتمام قفل',
+				field: 'description',
+				align: 'center',
+				valign: 'middle',
+				sortable: true,
+				}, {
+				title: 'اعتبارسنجی دومرحله ای',
+				field: 'isActive',
+				align: 'center',
+				valign: 'middle',
+          		formatter: enableFormatter
 				}, {
 				title: 'عملیات',
 				field: 'Operations',
@@ -106,11 +130,23 @@
 
 		function operateFormatter(value, row, index) {
 			return [
-			'<a class="like" href="' + location.href + '/Edit/' + row.guid + '" title="Like">',
+			'<a class="like" href="' + location.href + '/Edit/' + row.guid + '" title="ویرایش">',
 			'<i class="fa fa-edit"></i>',
 			'</a>  ',
-			'<a class="remove" href="' + location.href + '/Delete/'+ row.guid+'" title="Remove">',
+			'<a class="remove" href="' + location.href + '/Delete/'+ row.guid+'" title="حذف">',
 			'<i class="fa fa-trash"></i>',
+			'</a>',
+			'<a class="remove" href="' + location.href + '/ConfirmEmail/'+ row.guid+'" title="تایید ایمیل">',
+			'<i class="fa fa-at"></i>',
+			'</a>',
+			'<a class="remove" href="' + location.href + '/UnActive/'+ row.guid+'" title="غیرفعال‌سازی کاربر">',
+			'<i class="fa fa-charging-station"></i>',
+			'</a>',
+			'<a class="remove" href="' + location.href + '/twoFactor/'+ row.guid+'" title="فعال سازی اعتبار سنجی دومرحله‌ای">',
+			'<i class="fa fa-check-double"></i>',
+			'</a>',
+			'<a class="remove" href="' + location.href + '/twoFactor/'+ row.guid+'" title="خارج کردن کاربر از سیستم">',
+			'<i class="fa fa-phoenix-framework"></i>',
 			'</a>'
 			].join('')
 		}

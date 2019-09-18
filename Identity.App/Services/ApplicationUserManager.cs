@@ -142,6 +142,10 @@ namespace Identity.App.Services
                     LastName = x.LastName,
                     Email = x.Email,
                     IsActive = x.IsActive,
+                    x.LockoutEnd,
+                    x.EmailConfirmed,
+                    x.LockoutEnabled,
+                    x.TwoFactorEnabled
                 }).ToList();
 
             return new PagedQueryResult<UserListViewModel> { Total = total, Rows = data };
