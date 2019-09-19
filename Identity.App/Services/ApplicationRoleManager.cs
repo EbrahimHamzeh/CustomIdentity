@@ -91,10 +91,11 @@ namespace Identity.App.Services
 
         private int getCurrentUserId() => _contextAccessor.HttpContext.User.Identity.GetUserId<int>();
 
-        public List<SelectListItem> GetRolesSelectList(){
+        public List<SelectListItem> GetRolesSelectList(Guid id = new Guid()){
             return Roles.Select(x=> new SelectListItem {
                 Value = x.Id.ToString(),
-                Text = x.Name
+                Text = x.Name,
+                Selected = x.Id == id
             }).ToList();
         }
 
@@ -120,6 +121,5 @@ namespace Identity.App.Services
 
             await _uow.SaveChangesAsync();
         }
-
     }
 }

@@ -67,7 +67,7 @@ namespace Identity.App.Services
             return base.VerifyPasswordAsync(store, user, password);
         }
 
-        public User FindById(int userId)
+        public User FindById(Guid userId)
         {
             return _users.Find(userId);
         }
@@ -85,7 +85,7 @@ namespace Identity.App.Services
                 return null;
             }
 
-            var userId = int.Parse(currentUserId);
+            var userId = Guid.Parse(currentUserId);
             return _currentUserInScope = FindById(userId);
         }
 
@@ -142,14 +142,35 @@ namespace Identity.App.Services
                     LastName = x.LastName,
                     Email = x.Email,
                     IsActive = x.IsActive,
-                    x.LockoutEnd,
-                    x.EmailConfirmed,
-                    x.LockoutEnabled,
-                    x.TwoFactorEnabled
+                    LockoutEnd = x.LockoutEnd,
+                    EmailConfirmed = x.EmailConfirmed,
+                    LockoutEnabled = x.LockoutEnabled,
+                    TwoFactorEnabled = x.TwoFactorEnabled
                 }).ToList();
 
             return new PagedQueryResult<UserListViewModel> { Total = total, Rows = data };
         }
 
+        public async Task<UserViewModel> GetUserById(Guid guid)
+        {
+            if (guid == Guid.Empty) return null;
+
+            var user = await _users.FindAsync(guid);
+            if (user != null)
+            {
+                return new UserViewModel {
+                    Guid = user.Id,
+                    Username = user.UserName,
+                    FirstName = user.FirstName,
+                    LastName = user.LastName,
+                    Email = user.Email,
+                    IsActive = user.IsActive,
+                    EmailConfirmed = user.EmailConfirmed,
+                    LockoutEnabled = user.LockoutEnabled,
+                    TwoFactorEnabled = user.TwoFactorEnabled
+                };
+            }
+            return null;
+        }
     }
 }

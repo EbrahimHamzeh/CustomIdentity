@@ -984,12 +984,13 @@ namespace Identity.App.Services.Interface
         Task<byte[]> CreateSecurityTokenAsync(User user);
 
 
-        User FindById(int userId);
+        User FindById(Guid userId);
         User GetCurrentUser();
         Task<User> GetCurrentUserAsync();
         string GetCurrentUserId();
         List<User> GetCurrentUserRoles();
         string GetCurrentUserAccessInAction();
         Task<PagedQueryResult<UserListViewModel>> GetListAsync();
+        Task<UserViewModel> GetUserById(Guid guid);
     }
 }

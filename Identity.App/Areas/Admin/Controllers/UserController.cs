@@ -95,44 +95,46 @@ namespace Identity.App.Areas.Admin.Controllers
             return View(model);
         }
 
-        // [DisplayName("ویرایش")]
-        // [Route("Admin/DynmicRole/Edit/{guid:guid:required}")]
-        // public async Task<IActionResult> Edit(Guid guid)
-        // {
-        //     var role = await _roleManager.GetRoleByGuid(guid);
-        //     role.JsonJSTree = JsonConvert.SerializeObject(_mvcControllerDiscovery.GetAdminActionInTree(role.NodeSelected));
-        //     return View(role);
-        // }
+        [DisplayName("ویرایش")]
+        [Route("Admin/User/Edit/{guid:guid:required}")]
+        public async Task<IActionResult> Edit(Guid guid)
+        {
+            var user = await _userManager.GetUserById(guid);
+            user.RolesSelectList = _roleManager.GetRolesSelectList(user.RoleGuid);
+            return View(user);
+        }
 
-        // [ValidateAntiForgeryToken, HttpPost]
-        // [Route("Admin/DynmicRole/Edit/{guid:guid:required}")]
-        // public async Task<IActionResult> Edit(DynmicRoleViewModel model)
-        // {
-        //     if (string.IsNullOrEmpty(model.NodeSelected))
-        //         ModelState.AddModelError("JsonJSTree", "حداقل باید یک سطح دسترسی انتخاب کنید.");
+        [ValidateAntiForgeryToken, HttpPost]
+        [Route("Admin/User/Edit/{guid:guid:required}")]
+        public async Task<IActionResult> Edit(UserViewModel model)
+        {
+            if(string.IsNullOrEmpty(model.Password) && string.IsNullOrEmpty(model.ConfirmPassword)){
+                ModelState.Remove("Password");
+                ModelState.Remove("ConfirmPassword");
+            }
+            if (ModelState.IsValid)
+            {
+                var user = await _userManager.FindByIdAsync(model.Guid.ToString());
+                if (user == null)
+                {
+                    ModelState.AddModelError(string.Empty, "چنین کاربری در سیستم تعریف نشده است.");
+                }
+                else
+                {
+                    // role.ActionArray = model.NodeSelected;
+                    // role.Name = role.Title = model.Title;
+                    // role.Description = model.Description;
+                    // role.Enable = model.Enable;
+                    // var result = await _roleManager.UpdateAsync(role);
 
-        //     if (ModelState.IsValid)
-        //     {
-        //         var role = await _roleManager.FindByGuidAsync(model.Guid);
-        //         if (role == null)
-        //         {
-        //             ModelState.AddModelError(string.Empty, "چنین سطح‌دسترسی در سیستم تعریف نشده است.");
-        //         }
-        //         else
-        //         {
-        //             role.ActionArray = model.NodeSelected;
-        //             role.Name = role.Title = model.Title;
-        //             role.Description = model.Description;
-        //             role.Enable = model.Enable;
-        //             var result = await _roleManager.UpdateAsync(role);
-
-        //             if (result.Succeeded)
-        //                 return RedirectToAction(nameof(Index));
-        //             else
-        //                 ModelState.AddErrorsFromResult(result);
-        //         }
-        //     }
-        //     return View(model);
-        // }
+                    // if (result.Succeeded)
+                    //     return RedirectToAction(nameof(Index));
+                    // else
+                    //     ModelState.AddErrorsFromResult(result);
+                }
+            }
+            model.RolesSelectList = _roleManager.GetRolesSelectList(model.RoleGuid);
+            return View(model);
+        }
     }
 }

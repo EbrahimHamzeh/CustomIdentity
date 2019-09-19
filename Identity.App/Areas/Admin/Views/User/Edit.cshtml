@@ -1,19 +1,17 @@
-﻿@model DynmicRoleViewModel
+﻿@model UserViewModel
 @{
-    ViewData["Title"] = "داشبورد";
+    ViewData["Title"] = "کاربرجدید";
 }
 @section Styles
-{		
-	<link href="~/assets/vendors/jstree/jstree.bundle.rtl.css" rel="stylesheet" type="text/css" />
-
-	<!-- <link href="~/assets/vendors/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css" /> -->
+{
+	<link href="~/assets/vendors/select2/dist/css/select2.min.css" rel="stylesheet" type="text/css" />
 }
 
 <div class="kt-content  kt-grid__item kt-grid__item--fluid" id="kt_content">
     <div class="kt-portlet kt-portlet--last kt-portlet--head-lg kt-portlet--responsive-mobile" id="kt_page_portlet">
         <div class="kt-portlet__head kt-portlet__head--lg">
             <div class="kt-portlet__head-label">
-                <h3 class="kt-portlet__head-title">سطح دسترسی <small>ویرایش</small></h3>
+                <h3 class="kt-portlet__head-title">@ViewData["Title"] <small>جدید</small></h3>
             </div>
             <div class="kt-portlet__head-toolbar">
                 <a asp-action="Index" class="btn btn-clean kt-margin-r-10">
@@ -23,7 +21,7 @@
                 <div class="btn-group">
                     <button type="button" class="btn btn-brand" id="btnSubmitForm">
                         <i class="la la-check"></i>
-                        <span class="kt-hidden-mobile">ویرایش</span>
+                        <span class="kt-hidden-mobile">ثبت</span>
                     </button>
                     <button type="button" class="btn btn-brand dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     </button>
@@ -47,9 +45,7 @@
             </div>
         </div>
         <div class="kt-portlet__body">
-            <form class="kt-form" id="formData" asp-controller="DynmicRole" asp-asp-action="Edit" method="post" autocomplete="off">
-                <input type="hidden" asp-for="NodeSelected">
-                <input type="hidden" asp-for="Guid">
+            <form class="kt-form" id="formData" asp-controller="User" asp-asp-action="Edit" method="post" autocomplete="off">
                 <div class="row">
                     <div class="col-xl-2"></div>
                     <div class="col-xl-8">
@@ -57,42 +53,107 @@
                             <div class="kt-section__body">
                                 <h3 class="kt-section__title kt-section__title-lg">اطلاعات عمومی:</h3>
                                 <div class="form-group row">
-                                    <label class="col-3 col-form-label">عنوان</label>
+                                    <label class="col-3 col-form-label">نام‌کاربری</label>
                                     <div class="col-9">
-                                        <input asp-for="Title" class="form-control" type="text">
-                                        <span asp-validation-for="Title"  dir="ltr" class="text-danger"></span>
+                                        <input asp-for="Username" class="form-control" type="text">
+                                        <span asp-validation-for="Username"  dir="ltr" class="text-danger"></span>
                                     </div>
                                 </div>
                                 <div class="form-group row">
+                                    <label class="col-3 col-form-label">نام</label>
+                                    <div class="col-9">
+                                        <input asp-for="FirstName" class="form-control" type="text">
+                                        <span asp-validation-for="FirstName"  dir="ltr" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-3 col-form-label">نام‌خانوادگی</label>
+                                    <div class="col-9">
+                                        <input asp-for="LastName" class="form-control" type="text">
+                                        <span asp-validation-for="LastName"  dir="ltr" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-3 col-form-label">ایمیل</label>
+                                    <div class="col-9">
+                                        <input asp-for="Email" class="form-control" type="text">
+                                        <span asp-validation-for="Email"  dir="ltr" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-3 col-form-label">رمز</label>
+                                    <div class="col-9">
+                                        <input asp-for="Password" class="form-control" type="text">
+                                        <span asp-validation-for="Password"  dir="ltr" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-3 col-form-label">تاییدرمز</label>
+                                    <div class="col-9">
+                                        <input asp-for="ConfirmPassword" class="form-control" type="text">
+                                        <span asp-validation-for="ConfirmPassword"  dir="ltr" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-3 col-form-label">گروه‌کاربری</label>
+                                    <div class="col-9">
+                                        <select asp-for="RoleGuid" asp-items="Model.RolesSelectList"></select>
+                                        <span asp-validation-for="RoleGuid"  dir="ltr" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <!-- <div class="form-group row">
                                     <label class="col-3 col-form-label">توضیحات</label>
                                     <div class="col-9">
                                         <textarea asp-for="Description" class="form-control" maxlength="500" rows="6"></textarea>
                                         <span asp-validation-for="Enable"  dir="ltr" class="text-danger"></span>
                                     </div>
-                                </div>
+                                </div> -->
                                 <div class="form-group row">
                                     <label class="col-3 col-form-label">فعال</label>
                                     <div class="col-9">
                                         <span class="kt-switch kt-switch--icon">
                                             <label>
-                                                <input type="checkbox" asp-for="Enable">
+                                                <input type="checkbox" asp-for="IsActive">
                                                 <span></span>
                                             </label>
                                         </span>
-                                        <span asp-validation-for="Enable"  dir="ltr" class="text-danger"></span>
+                                        <span asp-validation-for="IsActive"  dir="ltr" class="text-danger"></span>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
-                        <div class="kt-separator kt-separator--border-dashed kt-separator--space-lg"></div>
-                        <div class="kt-section">
-                            <div class="kt-section__body">
-                                <h3 class="kt-section__title kt-section__title-lg">دسترسی:</h3>
                                 <div class="form-group row">
-                                    <label class="col-3 col-form-label">صفحات</label>
+                                    <label class="col-3 col-form-label">ایمیل تایید شده؟</label>
                                     <div class="col-9">
-                                        <div id="treeRole" class="tree-demo"></div>
-                                        <span asp-validation-for="JsonJSTree"  dir="ltr" class="text-danger"></span>
+                                        <span class="kt-switch kt-switch--icon">
+                                            <label>
+                                                <input type="checkbox" asp-for="EmailConfirmed">
+                                                <span></span>
+                                            </label>
+                                        </span>
+                                        <span asp-validation-for="EmailConfirmed"  dir="ltr" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-3 col-form-label">حساب مسدود شده است؟</label>
+                                    <div class="col-9">
+                                        <span class="kt-switch kt-switch--icon">
+                                            <label>
+                                                <input type="checkbox" asp-for="LockoutEnabled">
+                                                <span></span>
+                                            </label>
+                                        </span>
+                                        <span asp-validation-for="LockoutEnabled"  dir="ltr" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-3 col-form-label">اعتبار سنجی دو مرحله‌ای</label>
+                                    <div class="col-9">
+                                        <span class="kt-switch kt-switch--icon">
+                                            <label>
+                                                <input type="checkbox" asp-for="TwoFactorEnabled">
+                                                <span></span>
+                                            </label>
+                                        </span>
+                                        <span asp-validation-for="TwoFactorEnabled"  dir="ltr" class="text-danger"></span>
                                     </div>
                                 </div>
                             </div>
@@ -107,26 +168,12 @@
 
 @section Scripts
 {
-	<script src="~/assets/vendors/jstree/jstree.bundle.js" type="text/javascript"></script>
+    <script src="~/assets/vendors/select2/dist/js/select2.full.min.js" type="text/javascript"></script>
     <script src="~/assets/vendors/bootstrap-maxlength/src/bootstrap-maxlength.js" type="text/javascript"></script>
 
     <script>
-        jQuery(document).ready(function() {    
-            $('#treeRole').jstree({
-                    'plugins': ["wholerow", "checkbox", "types"],
-                    'core': {
-                        "themes" : {
-                            "responsive": true
-                        },    
-                        'data': @Html.Raw(Model.JsonJSTree)
-                    },
-            });
-
+        jQuery(document).ready(function() {
             $("#btnSubmitForm").click(function(){
-                // var selected =  $('#treeRole').jstree('get_checked',null,true);
-                // var allNodeTree = $('#treeRole').jstree(true).get_json('#', {flat:true});
-
-                document.getElementById('NodeSelected').value= $('#treeRole').jstree('get_checked',null,true);
                 document.getElementById('formData').submit();
             });
 
@@ -137,7 +184,12 @@
                 appendToParent: true,
                 validate: true
             });
-    });
-       
+
+            $('#RoleGuid').select2({
+                placeholder: "گروه کاربری",
+                width: '100%'
+            });
+
+        });
     </script>
 }

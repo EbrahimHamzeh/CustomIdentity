@@ -45,5 +45,9 @@ namespace Identity.App.ViewModel
         public Guid RoleGuid { get; set; }
 
         public List<SelectListItem> RolesSelectList { get; set; }
+
+        public bool EmailConfirmed { get; set; }
+        public bool LockoutEnabled { get; set; }
+        public bool TwoFactorEnabled { get; set; }
     }
 }

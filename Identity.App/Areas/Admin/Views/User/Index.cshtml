@@ -95,25 +95,25 @@
           		formatter: enableFormatter
 				},{
 				title: 'وضعیت ایمیل',
-				field: 'isActive',
+				field: 'emailConfirmed',
 				align: 'center',
 				valign: 'middle',
           		formatter: enableFormatter
 				}, {
 				title: 'قفل بودن کاربر',
-				field: 'isActive',
+				field: 'lockoutEnabled',
 				align: 'center',
 				valign: 'middle',
           		formatter: enableFormatter
 				}, {
 				title: 'تاریخ اتمام قفل',
-				field: 'description',
+				field: 'lockoutEnd',
 				align: 'center',
 				valign: 'middle',
 				sortable: true,
 				}, {
 				title: 'اعتبارسنجی دومرحله ای',
-				field: 'isActive',
+				field: 'twoFactorEnabled',
 				align: 'center',
 				valign: 'middle',
           		formatter: enableFormatter
@@ -156,7 +156,7 @@
 				0: {'title': 'غیرفعال', 'class': ' kt-badge--danger'},
 				1: {'title': 'فعال', 'class': ' kt-badge--success'},
 			};
-			return '<span class="kt-badge ' + status[+row.isActive].class + ' kt-badge--inline kt-badge--pill">' + status[+row.isActive].title + '</span>';
+			return '<span class="kt-badge ' + status[+value].class + ' kt-badge--inline kt-badge--pill">' + status[+value].title + '</span>';
 		}
     </script>
 }
