@@ -108,7 +108,8 @@ namespace Identity.App.Areas.Admin.Controllers
         [Route("Admin/User/Edit/{guid:guid:required}")]
         public async Task<IActionResult> Edit(UserViewModel model)
         {
-            if(string.IsNullOrEmpty(model.Password) && string.IsNullOrEmpty(model.ConfirmPassword)){
+            if (string.IsNullOrEmpty(model.Password) && string.IsNullOrEmpty(model.ConfirmPassword))
+            {
                 ModelState.Remove("Password");
                 ModelState.Remove("ConfirmPassword");
             }
@@ -121,16 +122,24 @@ namespace Identity.App.Areas.Admin.Controllers
                 }
                 else
                 {
-                    // role.ActionArray = model.NodeSelected;
-                    // role.Name = role.Title = model.Title;
-                    // role.Description = model.Description;
-                    // role.Enable = model.Enable;
-                    // var result = await _roleManager.UpdateAsync(role);
+                    user.UserName = model.Username;
+                    user.FirstName = model.FirstName;
+                    user.LastName = model.LastName;
+                    user.Email = model.Email;
+                    user.IsActive = model.IsActive;
+                    user.LockoutEnabled = model.LockoutEnabled;
+                    user.EmailConfirmed = model.EmailConfirmed;
+                    if(!string.IsNullOrEmpty(model.Password) && !string.IsNullOrEmpty(model.Password))
+                        user.PasswordHash = _userManager.PasswordHasher.HashPassword(user, model.Password);
 
-                    // if (result.Succeeded)
-                    //     return RedirectToAction(nameof(Index));
-                    // else
-                    //     ModelState.AddErrorsFromResult(result);
+                    var result = await _userManager.UpdateAsync(user);
+
+                    if (result.Succeeded)
+                    {
+                        return RedirectToAction(nameof(Index));
+                    }
+                    else
+                        ModelState.AddErrorsFromResult(result);
                 }
             }
             model.RolesSelectList = _roleManager.GetRolesSelectList(model.RoleGuid);
