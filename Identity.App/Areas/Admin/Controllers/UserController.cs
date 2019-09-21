@@ -129,15 +129,14 @@ namespace Identity.App.Areas.Admin.Controllers
                     user.IsActive = model.IsActive;
                     user.LockoutEnabled = model.LockoutEnabled;
                     user.EmailConfirmed = model.EmailConfirmed;
+                    
                     if(!string.IsNullOrEmpty(model.Password) && !string.IsNullOrEmpty(model.Password))
                         user.PasswordHash = _userManager.PasswordHasher.HashPassword(user, model.Password);
 
                     var result = await _userManager.UpdateAsync(user);
 
                     if (result.Succeeded)
-                    {
                         return RedirectToAction(nameof(Index));
-                    }
                     else
                         ModelState.AddErrorsFromResult(result);
                 }

@@ -47,3 +47,4 @@ C:\Users\Ebrahim\Desktop\blog\Identity\Identity.App\obj\Debug\netcoreapp2.2\Iden
 C:\Users\Ebrahim\Desktop\blog\Identity\Identity.App\obj\Debug\netcoreapp2.2\Razor\Areas\Identity\Views\EmailTemplates\_PasswordReset.g.cshtml.cs
 C:\Users\Ebrahim\Desktop\blog\Identity\Identity.App\obj\Debug\netcoreapp2.2\Razor\Areas\Identity\Views\ForgotPassword\Index.g.cshtml.cs
 C:\Users\Ebrahim\Desktop\blog\Identity\Identity.App\obj\Debug\netcoreapp2.2\Razor\Areas\Identity\Views\EmailTemplates\_EmailsLayout.g.cshtml.cs
+C:\Users\Ebrahim\Desktop\blog\Identity\Identity.App\obj\Debug\netcoreapp2.2\Razor\Areas\Identity\Views\ForgotPassword\ResetPassword.g.cshtml.cs

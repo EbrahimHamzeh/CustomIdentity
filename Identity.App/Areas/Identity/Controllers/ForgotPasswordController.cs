@@ -43,7 +43,7 @@ namespace Identity.App.Areas.Identity.Controllers
 
             _appSettings = appSettings;
             _appSettings.CheckArgumentIsNull(nameof(_appSettings));
-            
+
             _emailSender = emailSender;
             _emailSender.CheckArgumentIsNull(nameof(_emailSender));
         }
@@ -66,7 +66,7 @@ namespace Identity.App.Areas.Identity.Controllers
 
                 if (user == null)
                 {
-                    ModelState.AddModelError("Email","چنین کاربری در سیستم موجود نمی باشد.");
+                    ModelState.AddModelError("Email", "چنین کاربری در سیستم موجود نمی باشد.");
                     return View(model);
                 }
 
@@ -88,17 +88,33 @@ namespace Identity.App.Areas.Identity.Controllers
             return View(model);
         }
 
-        public async Task<IActionResult> LogOff(){
-            var user = User.Identity.IsAuthenticated ? await _userManager.FindByNameAsync(User.Identity.Name) : null;
-            await _signInManager.SignOutAsync();
+        public ActionResult ResetPassword(string code = null)
+        {
+            return View();
+        }
 
-            if(user != null)
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [ValidateDNTCaptcha(CaptchaGeneratorLanguage = DNTCaptcha.Core.Providers.Language.Persian)]
+        public async Task<ActionResult> ResetPassword(ResetPasswordViewModel model, [FromQuery(Name = "code")] string code)
+        {
+            if(!ModelState.IsValid)
+                return View(model);
+            
+            var user = await _userManager.FindByEmailAsync(model.Email);
+            if(user == null)
             {
-                await _userManager.UpdateSecurityStampAsync(user);
-                _logger.LogInformation(4, $"{user.UserName} logged out.");
+                ModelState.AddModelError("Email", "چنین کاربری در سیستم موجود نمی باشد.");
+                return View(model);
             }
 
-            return RedirectToAction(nameof(App.Controllers.HomeController.Index), "Home");
+            var result = await _userManager.ResetPasswordAsync(user, code, model.Password);
+            if(result.Succeeded)
+                return RedirectToAction("Index", "Login");
+            
+            ModelState.AddErrorsFromResult(result);
+
+            return View(model);
         }
     }
 }
