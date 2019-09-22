@@ -19,7 +19,6 @@ namespace Identity.App.ViewModel
         [Compare(nameof(Password), ErrorMessage = "کلمات عبور وارد شده با هم تطابق ندارند")]
         public string ConfirmPassword { get; set; }
 
-        [FromQuery(Name = "code")]
         public string Code { get; set; }
     }
 }

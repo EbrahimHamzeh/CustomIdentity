@@ -88,15 +88,15 @@ namespace Identity.App.Areas.Identity.Controllers
             return View(model);
         }
 
-        public ActionResult ResetPassword(string code = null)
+        public ActionResult ResetPassword(string code)
         {
-            return View();
+            return View(new ResetPasswordViewModel { Code = code});
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
         [ValidateDNTCaptcha(CaptchaGeneratorLanguage = DNTCaptcha.Core.Providers.Language.Persian)]
-        public async Task<ActionResult> ResetPassword(ResetPasswordViewModel model, [FromQuery(Name = "code")] string code)
+        public async Task<ActionResult> ResetPassword(ResetPasswordViewModel model)
         {
             if(!ModelState.IsValid)
                 return View(model);
@@ -108,7 +108,7 @@ namespace Identity.App.Areas.Identity.Controllers
                 return View(model);
             }
 
-            var result = await _userManager.ResetPasswordAsync(user, code, model.Password);
+            var result = await _userManager.ResetPasswordAsync(user, model.Code, model.Password);
             if(result.Succeeded)
                 return RedirectToAction("Index", "Login");
             
