@@ -28,6 +28,7 @@ namespace Identity.App.Areas.Admin.Controllers
         private readonly IUnitOfWork _uow;
         private readonly DbSet<UserRole> _userRoles;
 
+        // TODO: validate username and password???
         public UserController(IUnitOfWork uow, IApplicationUserManager userManager, IApplicationRoleManager roleManager)
         {
             _uow = uow;

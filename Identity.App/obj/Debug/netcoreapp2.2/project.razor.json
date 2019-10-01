@@ -82,7 +82,7 @@
         "Kind": "ITagHelper",
         "Name": "DNTBreadCrumb.Core.BreadCrumbTagHelper",
         "AssemblyName": "DNTBreadCrumb.Core",
-        "Documentation": null,
+        "Documentation": "\n            <summary>\n            BreadCrumb TagHelper\n            </summary>\n        ",
         "TagOutputHint": null,
         "CaseSensitive": false,
         "TagMatchingRules": [
@@ -102,7 +102,7 @@
             "IsEnum": false,
             "IndexerNamePrefix": null,
             "IndexerTypeName": null,
-            "Documentation": null,
+            "Documentation": "\n            <summary>\n            Such as 'Home' or 'خانه'\n            </summary>\n        ",
             "Diagnostics": [],
             "Metadata": {
               "Common.PropertyName": "HomePageTitle"
@@ -116,7 +116,7 @@
             "IsEnum": false,
             "IndexerNamePrefix": null,
             "IndexerTypeName": null,
-            "Documentation": null,
+            "Documentation": "\n            <summary>\n            Such as @Url.Action(\"Index\", \"Home\")\n            </summary>\n        ",
             "Diagnostics": [],
             "Metadata": {
               "Common.PropertyName": "HomePageUrl"
@@ -130,7 +130,7 @@
             "IsEnum": false,
             "IndexerNamePrefix": null,
             "IndexerTypeName": null,
-            "Documentation": null,
+            "Documentation": "\n            <summary>\n            such as `glyphicon glyphicon-home`\n            </summary>\n        ",
             "Diagnostics": [],
             "Metadata": {
               "Common.PropertyName": "HomePageGlyphIcon"
@@ -144,7 +144,7 @@
             "IsEnum": true,
             "IndexerNamePrefix": null,
             "IndexerTypeName": null,
-            "Documentation": null,
+            "Documentation": "\n            <summary>\n            Set version of bootstrap that you are using\n            </summary>\n        ",
             "Diagnostics": [],
             "Metadata": {
               "Common.PropertyName": "BootstrapVersion"
@@ -3396,6 +3396,11 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "Areas\\Identity\\Views\\EmailTemplates\\_ChangePasswordNotification.cshtml",
+      "TargetPath": "Areas\\Identity\\Views\\EmailTemplates\\_ChangePasswordNotification.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "Areas\\Admin\\Views\\_ViewImports.cshtml",
       "TargetPath": "Areas\\Admin\\Views\\_ViewImports.cshtml",
       "FileKind": "mvc"
@@ -3428,6 +3433,11 @@
     {
       "FilePath": "Views\\Shared\\_LayoutIdentity.cshtml",
       "TargetPath": "Views\\Shared\\_LayoutIdentity.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "Views\\Shared\\_ProfileMenu.cshtml",
+      "TargetPath": "Views\\Shared\\_ProfileMenu.cshtml",
       "FileKind": "mvc"
     },
     {
