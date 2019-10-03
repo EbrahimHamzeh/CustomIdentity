@@ -208,11 +208,11 @@ namespace Identity.App.Services.Interface
         /// </returns>
         Task<string> GetRoleIdAsync(Role role);
 
-        
         Task<PagedQueryResult<DynmicRoleListViewModel>> GetListAsync();
         Task<DynmicRoleViewModel> GetRoleByGuid(Guid guid);
         Task<Role> FindByGuidAsync(Guid guid);
         Task AddOrUpdateRoleClaims(Guid roleId, string roleClaimType, string selectedRoleClaimValues);
         List<SelectListItem> GetRolesSelectList(Guid id = new Guid());
+        Role GetRoleByUserGuid(Guid guid);
     }
 }

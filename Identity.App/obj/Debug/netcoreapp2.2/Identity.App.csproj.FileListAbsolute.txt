@@ -50,3 +50,5 @@ C:\Users\Ebrahim\Desktop\blog\Identity\Identity.App\obj\Debug\netcoreapp2.2\Razo
 C:\Users\Ebrahim\Desktop\blog\Identity\Identity.App\obj\Debug\netcoreapp2.2\Razor\Areas\Identity\Views\ForgotPassword\ResetPassword.g.cshtml.cs
 C:\Users\Ebrahim\Desktop\blog\Identity\Identity.App\obj\Debug\netcoreapp2.2\Razor\Areas\Admin\Views\Profile\Index.g.cshtml.cs
 C:\Users\Ebrahim\Desktop\blog\Identity\Identity.App\obj\Debug\netcoreapp2.2\Razor\Areas\Admin\Views\Profile\ChangePassword.g.cshtml.cs
+C:\Users\Ebrahim\Desktop\blog\Identity\Identity.App\obj\Debug\netcoreapp2.2\Razor\Areas\Identity\Views\EmailTemplates\_ChangePasswordNotification.g.cshtml.cs
+C:\Users\Ebrahim\Desktop\blog\Identity\Identity.App\obj\Debug\netcoreapp2.2\Razor\Views\Shared\_ProfileMenu.g.cshtml.cs

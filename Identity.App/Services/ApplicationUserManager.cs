@@ -151,14 +151,15 @@ namespace Identity.App.Services
             return new PagedQueryResult<UserListViewModel> { Total = total, Rows = data };
         }
 
-        public async Task<UserViewModel> GetUserById(Guid guid)
+        public async Task<UserViewModel> GetUserById(Guid guid = new Guid())
         {
             if (guid == Guid.Empty) return null;
 
-            var user = await _users.FindAsync(guid);
+            var user = await _users.Where(x => x.Id == guid).Include(x => x.Roles).FirstOrDefaultAsync();
             if (user != null)
             {
-                return new UserViewModel {
+                return new UserViewModel
+                {
                     Guid = user.Id,
                     Username = user.UserName,
                     FirstName = user.FirstName,
@@ -167,7 +168,8 @@ namespace Identity.App.Services
                     IsActive = user.IsActive,
                     EmailConfirmed = user.EmailConfirmed,
                     LockoutEnabled = user.LockoutEnabled,
-                    TwoFactorEnabled = user.TwoFactorEnabled
+                    TwoFactorEnabled = user.TwoFactorEnabled,
+                    RoleGuid = user.Roles.FirstOrDefault() != null ? user.Roles.FirstOrDefault().RoleId : Guid.Empty
                 };
             }
             return null;

@@ -21,6 +21,7 @@ namespace Identity.App.Services
     {
         private readonly IHttpContextAccessor _contextAccessor;
         private readonly DbSet<RoleClaim> _roleClaims;
+        private readonly DbSet<UserRole> _userRole;
         private readonly IUnitOfWork _uow;
 
         public ApplicationRoleManager(
@@ -40,6 +41,7 @@ namespace Identity.App.Services
             _uow.CheckArgumentIsNull(nameof(_uow));
 
             _roleClaims = _uow.Set<RoleClaim>();
+            _userRole = _uow.Set<UserRole>();
         }
 
         public async Task<PagedQueryResult<DynmicRoleListViewModel>> GetListAsync()
@@ -120,6 +122,12 @@ namespace Identity.App.Services
             }
 
             await _uow.SaveChangesAsync();
+        }
+
+        public Role GetRoleByUserGuid(Guid guid)
+        {
+            var role = _userRole.Where(x=> x.UserId == guid).Include(x=> x.Role);
+            return role.Select(x=> x.Role).FirstOrDefault();
         }
     }
 }

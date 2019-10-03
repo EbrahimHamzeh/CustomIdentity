@@ -6,11 +6,12 @@ using Identity.App.Extention;
 using Identity.App.Models;
 using Identity.App.Models.Context;
 using Identity.App.Services.Interface;
+using Identity.App.ViewModel;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
+using Microsoft.AspNetCore.Hosting;
 
 namespace Identity.App.Services
 {
@@ -20,12 +21,18 @@ namespace Identity.App.Services
         private readonly ILogger<IdentityDbInitializer> _logger;
         private readonly IApplicationRoleManager _roleManager;
         private readonly IServiceScopeFactory _scopeFactory;
+        private readonly IMvcControllerDiscovery _mvcControllerDiscovery;
+        private readonly IHostingEnvironment _env;
+        private readonly IUnitOfWork _uow;
 
         public IdentityDbInitializer(
             IApplicationUserManager applicationUserManager,
             IServiceScopeFactory scopeFactory,
             IApplicationRoleManager roleManager,
-            ILogger<IdentityDbInitializer> logger
+            ILogger<IdentityDbInitializer> logger,
+            IMvcControllerDiscovery mvcControllerDiscovery,
+            IHostingEnvironment env,
+            IUnitOfWork uow
             )
         {
             _applicationUserManager = applicationUserManager;
@@ -39,6 +46,11 @@ namespace Identity.App.Services
 
             _logger = logger;
             _logger.CheckArgumentIsNull(nameof(_logger));
+
+            _mvcControllerDiscovery = mvcControllerDiscovery;
+            _env = env;
+
+            _uow = uow;
         }
 
         /// <summary>
@@ -95,6 +107,10 @@ namespace Identity.App.Services
             if (adminUser != null)
             {
                 _logger.LogInformation($"{thisMethodName}: adminUser already exists.");
+                var role = _roleManager.GetRoleByUserGuid(adminUser.Id);
+                if(_env.IsDevelopment() && role != null)
+                    await _roleManager.AddOrUpdateRoleClaims(role.Id, GlobalEnum.DynamicRole, _mvcControllerDiscovery.GetAllAdminActionRoute());
+                await _uow.SaveChangesAsync();
                 return IdentityResult.Success;
             }
 
@@ -103,11 +119,16 @@ namespace Identity.App.Services
             if (adminRole == null)
             {
                 adminRole = new Role(roleName);
+                adminRole.Id = new Guid();
                 var adminRoleResult = await _roleManager.CreateAsync(adminRole);
                 if (adminRoleResult == IdentityResult.Failed())
                 {
                     _logger.LogError($"{thisMethodName}: adminRole CreateAsync failed. {adminRoleResult.DumpErrors()}");
                     return IdentityResult.Failed();
+                }
+                else
+                {
+                    await _roleManager.AddOrUpdateRoleClaims(adminRole.Id, GlobalEnum.DynamicRole, _mvcControllerDiscovery.GetAllAdminActionRoute());
                 }
             }
             else

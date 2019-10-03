@@ -991,6 +991,6 @@ namespace Identity.App.Services.Interface
         List<User> GetCurrentUserRoles();
         string GetCurrentUserAccessInAction();
         Task<PagedQueryResult<UserListViewModel>> GetListAsync();
-        Task<UserViewModel> GetUserById(Guid guid);
+        Task<UserViewModel> GetUserById(Guid guid = new Guid());
     }
 }

@@ -13,5 +13,6 @@ namespace Identity.App.Services.Interface
         IEnumerable<MvcControllerInfo> GetControllers();
 
         List<JsTreeNode> GetAdminActionInTree(string selectedIds = null);
+        string GetAllAdminActionRoute();
     }
 }

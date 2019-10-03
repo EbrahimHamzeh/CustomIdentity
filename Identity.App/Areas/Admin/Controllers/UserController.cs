@@ -130,14 +130,23 @@ namespace Identity.App.Areas.Admin.Controllers
                     user.IsActive = model.IsActive;
                     user.LockoutEnabled = model.LockoutEnabled;
                     user.EmailConfirmed = model.EmailConfirmed;
-                    
-                    if(!string.IsNullOrEmpty(model.Password) && !string.IsNullOrEmpty(model.Password))
+                    user.Roles = null;
+
+                    if (!string.IsNullOrEmpty(model.Password) && !string.IsNullOrEmpty(model.Password))
                         user.PasswordHash = _userManager.PasswordHasher.HashPassword(user, model.Password);
 
                     var result = await _userManager.UpdateAsync(user);
 
                     if (result.Succeeded)
+                    {
+                        var role = await _roleManager.FindByGuidAsync(model.RoleGuid);
+                        var userRole = await _userRoles.Where(x => x.UserId == user.Id).ToListAsync();
+                        _uow.RemoveRange(userRole);
+                        await _userRoles.AddAsync(new UserRole { Role = role, User = user, RoleId = role.Id, UserId = user.Id });
+                        await _uow.SaveChangesAsync();
+
                         return RedirectToAction(nameof(Index));
+                    }
                     else
                         ModelState.AddErrorsFromResult(result);
                 }

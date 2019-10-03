@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Reflection;
+using DNTCommon.Web.Core;
 using Identity.App.Areas;
 using Identity.App.Services.Interface;
 using Identity.App.ViewModel;
@@ -16,10 +17,12 @@ namespace Identity.App.Services
     {
         private List<MvcControllerInfo> _mvcControllers;
         private readonly IActionDescriptorCollectionProvider _actionDescriptorCollectionProvider;
+        private readonly IMvcActionsDiscoveryService _mvcActionsDiscoveryService;
 
-        public MvcControllerDiscovery(IActionDescriptorCollectionProvider actionDescriptorCollectionProvider)
+        public MvcControllerDiscovery(IActionDescriptorCollectionProvider actionDescriptorCollectionProvider, IMvcActionsDiscoveryService mvcActionsDiscoveryService)
         {
             _actionDescriptorCollectionProvider = actionDescriptorCollectionProvider;
+            _mvcActionsDiscoveryService = mvcActionsDiscoveryService;
         }
 
         public IEnumerable<MvcControllerInfo> GetControllers()
@@ -106,5 +109,15 @@ namespace Identity.App.Services
 
             return nodesList;
         } 
+
+        public string GetAllAdminActionRoute(){
+            var allDetailRole = this.GetControllers();
+            allDetailRole = allDetailRole?.Where(x => x.AreaName == AreaConstants.AdminArea).ToList();
+
+            var controllerActions = _mvcActionsDiscoveryService.MvcControllers;
+            controllerActions = controllerActions?.Where(x => x.AreaName == AreaConstants.AdminArea).ToList();
+
+            return string.Join(',', controllerActions.Select(x=> string.Join(',', x.MvcActions.Select(y=> y.ActionId))));
+        }
     }
 }
