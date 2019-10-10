@@ -156,6 +156,7 @@ namespace Identity.App.Areas.Admin.Controllers
         }
 
         [Route("Admin/User/ConfirmEmail/{guid:guid:required}")]
+        [DisplayName("تایید ایمیل")]
         public async Task<ActionResult> ConfirmEmail(Guid id, bool status)
         {
             await _userManager.UpdateUserAndSecurityStampAsync(id, user => {
@@ -166,6 +167,7 @@ namespace Identity.App.Areas.Admin.Controllers
         }
 
         [Route("Admin/User/Status/{guid:guid:required}")]
+        [DisplayName("تغییر وضعیت کاربر")]
         public async Task<ActionResult> Status(Guid id, bool status)
         {
             await _userManager.UpdateUserAndSecurityStampAsync(id, user => {
@@ -176,6 +178,7 @@ namespace Identity.App.Areas.Admin.Controllers
         }
 
         [Route("Admin/User/TwoFactor/{guid:guid:required}")]
+        [DisplayName("اعتبار سنجی دو مرحله ای")]
         public async Task<ActionResult> TwoFactor(Guid id, bool status)
         {
             await _userManager.UpdateUserAndSecurityStampAsync(id, user => {

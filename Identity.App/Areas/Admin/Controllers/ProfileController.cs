@@ -32,6 +32,7 @@ namespace Identity.App.Areas.Admin.Controllers
         [DisplayName("پروفایل")]
         public IActionResult Index() => View();
 
+        [DisplayName("- تغییر رمز پروفایل")]
         public async Task<IActionResult> ChangePassword(ChangePasswordViewModel model)
         {
             if (!ModelState.IsValid)

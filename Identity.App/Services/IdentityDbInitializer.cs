@@ -97,7 +97,7 @@ namespace Identity.App.Services
         public async Task<IdentityResult> SeedDatabaseWithAdminUserAsync()
         {
             var name = "admin";
-            var password = "Ebr@h!m@1372";
+            var password = "hamZeh@1398";
             var email = "pranc14@gmail.com";
             var roleName = "admin";
 
