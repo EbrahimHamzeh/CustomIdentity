@@ -174,5 +174,27 @@ namespace Identity.App.Services
             }
             return null;
         }
+
+        public async Task<IdentityResult> UpdateUserAndSecurityStampAsync(Guid id, Action<User> action)
+        {
+            var user = await _users.FindAsync(id);
+            if (user != null)
+            {
+                action(user);
+
+                var result = await UpdateAsync(user);
+                if (!result.Succeeded)
+                {
+                    return result;
+                }
+                return await UpdateSecurityStampAsync(user);
+            }
+
+            return IdentityResult.Failed(new IdentityError
+            {
+                Code = "UserNotFound",
+                Description = "کاربر مورد نظر یافت نشد."
+            });
+        }
     }
 }

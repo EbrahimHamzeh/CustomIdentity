@@ -17,12 +17,10 @@ namespace Identity.App.Services
     {
         private List<MvcControllerInfo> _mvcControllers;
         private readonly IActionDescriptorCollectionProvider _actionDescriptorCollectionProvider;
-        private readonly IMvcActionsDiscoveryService _mvcActionsDiscoveryService;
 
-        public MvcControllerDiscovery(IActionDescriptorCollectionProvider actionDescriptorCollectionProvider, IMvcActionsDiscoveryService mvcActionsDiscoveryService)
+        public MvcControllerDiscovery(IActionDescriptorCollectionProvider actionDescriptorCollectionProvider)
         {
             _actionDescriptorCollectionProvider = actionDescriptorCollectionProvider;
-            _mvcActionsDiscoveryService = mvcActionsDiscoveryService;
         }
 
         public IEnumerable<MvcControllerInfo> GetControllers()
@@ -114,10 +112,7 @@ namespace Identity.App.Services
             var allDetailRole = this.GetControllers();
             allDetailRole = allDetailRole?.Where(x => x.AreaName == AreaConstants.AdminArea).ToList();
 
-            var controllerActions = _mvcActionsDiscoveryService.MvcControllers;
-            controllerActions = controllerActions?.Where(x => x.AreaName == AreaConstants.AdminArea).ToList();
-
-            return string.Join(',', controllerActions.Select(x=> string.Join(',', x.MvcActions.Select(y=> y.ActionId))));
+            return string.Join(',', allDetailRole.Select(x=> string.Join(',', x.Actions.Select(y=> y.Id))));
         }
     }
 }

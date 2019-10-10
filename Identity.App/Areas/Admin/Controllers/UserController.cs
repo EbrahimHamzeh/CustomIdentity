@@ -154,5 +154,35 @@ namespace Identity.App.Areas.Admin.Controllers
             model.RolesSelectList = _roleManager.GetRolesSelectList(model.RoleGuid);
             return View(model);
         }
+
+        [Route("Admin/User/ConfirmEmail/{guid:guid:required}")]
+        public async Task<ActionResult> ConfirmEmail(Guid id, bool status)
+        {
+            await _userManager.UpdateUserAndSecurityStampAsync(id, user => {
+                user.EmailConfirmed = status;
+            });
+
+            return RedirectToAction(nameof(Index));
+        }
+
+        [Route("Admin/User/Status/{guid:guid:required}")]
+        public async Task<ActionResult> Status(Guid id, bool status)
+        {
+            await _userManager.UpdateUserAndSecurityStampAsync(id, user => {
+                user.IsActive = status;
+            });
+
+            return RedirectToAction(nameof(Index));
+        }
+
+        [Route("Admin/User/TwoFactor/{guid:guid:required}")]
+        public async Task<ActionResult> TwoFactor(Guid id, bool status)
+        {
+            await _userManager.UpdateUserAndSecurityStampAsync(id, user => {
+                user.TwoFactorEnabled = status;
+            });
+
+            return RedirectToAction(nameof(Index));
+        }
     }
 }

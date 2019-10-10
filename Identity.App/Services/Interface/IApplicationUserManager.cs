@@ -992,5 +992,6 @@ namespace Identity.App.Services.Interface
         string GetCurrentUserAccessInAction();
         Task<PagedQueryResult<UserListViewModel>> GetListAsync();
         Task<UserViewModel> GetUserById(Guid guid = new Guid());
+        Task<IdentityResult> UpdateUserAndSecurityStampAsync(Guid id, Action<User> action);
     }
 }

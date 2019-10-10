@@ -154,6 +154,7 @@ namespace Identity.App
                     });
             });
 
+            services.AddSingleton<Identity.App.Services.IMvcActionsDiscoveryService, Identity.App.Services.MvcActionsDiscoveryService>();
 
             services.AddDNTCommonWeb();
             services.AddDNTCaptcha(options => options.UseCookieStorageProvider());

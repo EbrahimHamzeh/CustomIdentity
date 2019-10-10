@@ -21,7 +21,7 @@ namespace Identity.App.Services
         private readonly ILogger<IdentityDbInitializer> _logger;
         private readonly IApplicationRoleManager _roleManager;
         private readonly IServiceScopeFactory _scopeFactory;
-        private readonly IMvcControllerDiscovery _mvcControllerDiscovery;
+        private readonly IMvcActionsDiscoveryService _mvcActionsDiscoveryService;
         private readonly IHostingEnvironment _env;
         private readonly IUnitOfWork _uow;
 
@@ -30,7 +30,7 @@ namespace Identity.App.Services
             IServiceScopeFactory scopeFactory,
             IApplicationRoleManager roleManager,
             ILogger<IdentityDbInitializer> logger,
-            IMvcControllerDiscovery mvcControllerDiscovery,
+            IMvcActionsDiscoveryService mvcActionsDiscoveryService,
             IHostingEnvironment env,
             IUnitOfWork uow
             )
@@ -47,7 +47,7 @@ namespace Identity.App.Services
             _logger = logger;
             _logger.CheckArgumentIsNull(nameof(_logger));
 
-            _mvcControllerDiscovery = mvcControllerDiscovery;
+            _mvcActionsDiscoveryService = mvcActionsDiscoveryService;
             _env = env;
 
             _uow = uow;
@@ -109,7 +109,7 @@ namespace Identity.App.Services
                 _logger.LogInformation($"{thisMethodName}: adminUser already exists.");
                 var role = _roleManager.GetRoleByUserGuid(adminUser.Id);
                 if(_env.IsDevelopment() && role != null)
-                    await _roleManager.AddOrUpdateRoleClaims(role.Id, GlobalEnum.DynamicRole, _mvcControllerDiscovery.GetAllAdminActionRoute());
+                    await _roleManager.AddOrUpdateRoleClaims(role.Id, GlobalEnum.DynamicRole, _mvcActionsDiscoveryService.GetAllAdminActionRoute());
                 await _uow.SaveChangesAsync();
                 return IdentityResult.Success;
             }
@@ -128,7 +128,7 @@ namespace Identity.App.Services
                 }
                 else
                 {
-                    await _roleManager.AddOrUpdateRoleClaims(adminRole.Id, GlobalEnum.DynamicRole, _mvcControllerDiscovery.GetAllAdminActionRoute());
+                    // await _roleManager.AddOrUpdateRoleClaims(adminRole.Id, GlobalEnum.DynamicRole, _mvcControllerDiscovery.GetAllAdminActionRoute());
                 }
             }
             else
